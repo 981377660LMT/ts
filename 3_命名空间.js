@@ -28,6 +28,7 @@ console.log(something) // { foo: 123, bar: 456 }
 
 // “内部模块”现在称做“命名空间namespace”。 “外部模块”现在则简称为“模块module”
 // declare module 一般用于声明第三方库
+// 例如 declare module "reflect-metadata"
 // declare namespace 一般用于声明自己的代码，防止命名冲突，外面套一层命名空间
 // 记得export导出
 https://www.tslang.cn/docs/handbook/namespaces.html
