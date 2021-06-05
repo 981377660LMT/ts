@@ -43,4 +43,8 @@ git恢复数据
 三种情况1.未add未commit 2.add了未commit 3.已add已commit=>git reflog命令
 
 ![声明会创建以下三种实体之一：命名空间，类型或值](note/2021-06-05-14-36-43.png)
+
+
+TypeScript 具有三种 JSX 模式： preserve ， react 和 react-native
+![](note/2021-06-05-15-13-01.png)
 ```
