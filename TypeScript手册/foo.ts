@@ -36,3 +36,23 @@ declare function doSomething(...args: [...string[], boolean]): void {}
 doSomething(false)
 doSomething('a', 'b', true)
 ///////////////////////////////////////
+// 解构出来的变量可以被明确地标记为未使用的
+// TypeScript 会识别出使用了下划线的 _first 变量是有意的未使用的变量。
+let [_first, second] = [1, 2]
+///////////////////////////////////////
+type Partial<T> = {
+  [P in keyof T]?: T[P]
+}
+// 添加成员，则可以使用交叉类型：
+type PartialWithNewMember<T> = {
+  [P in keyof T]?: T[P]
+} & { newMember: boolean }
+
+interface IFoo {
+  length: number
+}
+
+const a: PartialWithNewMember<IFoo> = {
+  newMember: true,
+}
+///////////////////////////////////////
