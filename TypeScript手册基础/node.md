@@ -181,6 +181,8 @@ function f(this: void) {
     // 确保`this`在这个独立的函数中无法使用
 }
 
+只有 get 而没有 set 的存取器会被自动推断为 readonly 属性
+
 使用 --lib 编译参数包含内置类型声明
 获取 ES6/ES2015 内置 API 声明仅限于 target: ES6 。输入 --lib ，你可以使用 --lib 指定一组项目所需要的内置 API。比如说，如果你希望项目运行时支持 Map 、 Set 和 Promise （例如现在静默更新浏览器），直接写 --lib es2015.collection,es2015.promise 就好了。同样，你也可以排除项目中不需要的声明，例如在 node 项目中使用 --lib es5,es6 排除 DOM。
 
@@ -194,11 +196,27 @@ TypeScript 2.1 支持三个新的编译版本值 --target ES2016 , --target ES20
 同样， --target ES2017 将指示编译器不要编译 ES2017 特有的特性像 async/await 。
 --target ESNext 则对应最新的 ES 提议特性支持
 
+
+2.7
+元组现在具有固定长度的属性
+in 表达式被视为类型保护
+
 2.8
 改进对映射类型修饰符的控制
 映射类型里的 readonly 或 ? 属性修饰符现在可以使用 + 或 - 前缀，来表示修饰符是添加还是移除。
 type MutableRequired<T> = { -readonly [P in keyof T]-?: T[P] };  // 移除readonly和?
 type ReadonlyPartial<T> = { +readonly [P in keyof T]+?: T[P] };  // 添加readonly和?
+
+2.9
+keyof 现在包括 string 、 number 和 symbol 键名
+如果你的函数只能处理名字符串属性的键，请在声明中使用 Extract<keyof T，string>
+function useKey<T, K extends Extract<keyof T, string>>(o: T, k: K) {
+  var name: string = k;  // OK
+}
+如果你的函数可以处理所有属性键，那么更改应该是顺畅的：
+function useKey<T, K extends keyof T>(o: T, k: K) {
+  var name: string | number | symbol = k;
+}
 
 3.4
 const 断言
@@ -229,4 +247,12 @@ export type { SomeThing };
 /** @deprecated */ 支持
 TypeScript 现在能够识别代码中的 /** @deprecated * JSDoc 注释，并对编辑器提供支持。 该信息会显示在自动补全列表中以及建议诊断信息，编辑器可以特殊处理它。 在类似于 VS Code 的编辑器中，废弃的值会显示为删除线，例如 like this。
 ![](note/2021-06-05-21-33-54.png)
+
+4.1
+模版字面量类型
+
+4.2
+解构出来的变量可以_被明确地标记为未使用的
+声明缺失的函数
+TypeScript 支持了一个新的快速修复功能，那就是根据调用方来生成新的函数和方法声明！
 ```
