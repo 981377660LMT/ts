@@ -1,4 +1,6 @@
 // observable.ts
+// 全局范围的扩大仅可直接嵌套在外部模块中或环境模块声明中。
+// 确保当前文件被当做一个模块.
 export class Observable<T> {
   // ... still no implementation ...
 }

@@ -99,3 +99,11 @@ type T32 = Diff<string | number | (() => void), Function> // string | number
 type T33 = Filter<string | number | (() => void), Function> // () => void
 type NonNullable<T> = Diff<T, null | undefined> // Remove null and undefined from T
 ///////////////////////////////////////////////
+switch (Math.random()) {
+  case 0: // 错误: switch 中出现了贯穿的 case.
+    console.log('even')
+
+  case 1:
+    console.log('odd')
+    break
+}
