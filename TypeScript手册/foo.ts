@@ -56,3 +56,45 @@ const a: PartialWithNewMember<IFoo> = {
   newMember: true,
 }
 ///////////////////////////////////////
+// Readonly ， Partial 和 Pick 是同态的，但 Record 不是。 因为 Record 并不需要输入类型来拷贝属性，所以它不属于同态：
+// Record记录属性
+// 非同态类型本质上会创建新的属性，因此它们不会从它处拷贝属性修饰符。
+type ThreeStringProps = Record<'prop1' | 'prop2' | 'prop3', string>
+////////////////////////////////////
+type TypeName<T> = T extends string
+  ? 'string'
+  : T extends number
+  ? 'number'
+  : T extends boolean
+  ? 'boolean'
+  : T extends undefined
+  ? 'undefined'
+  : T extends Function
+  ? 'function'
+  : 'object'
+
+type T0 = TypeName<string> // "string"
+type T1 = TypeName<'a'> // "string"
+type T1_ = TypeName<1> // "number"
+type T2 = TypeName<true> // "boolean"
+type T3 = TypeName<() => void> // "function"
+type T4 = TypeName<string[]> // "object"
+///////////////////////////////////////////////
+// 分布式有条件类型
+// 实例化 T extends U ? X : Y ， T 的类型为 A | B | C ，会被解析为 (A extends U ? X : Y) | (B extends U ? X : Y) | (C extends U ? X : Y) 。
+// 额外的约束 any[]
+type BoxedValue<T> = { value: T }
+type BoxedArray<T> = { array: T[] }
+type Boxed<T> = T extends any[] ? BoxedArray<T[number]> : BoxedValue<T>
+
+type T20 = Boxed<string> // BoxedValue<string>;
+type T21 = Boxed<number[]> // BoxedArray<number>;
+type T22 = Boxed<string | number[]> // BoxedValue<string> | BoxedArray<number>;
+////////////////////////////////////////////////
+type Diff<T, U> = T extends U ? never : T
+type Filter<T, U> = T extends U ? T : never
+type T30 = Diff<'a' | 'b' | 'c' | 'd', 'a' | 'c' | 'f'> // "b" | "d"
+type T31 = Filter<'a' | 'b' | 'c' | 'd', 'a' | 'c' | 'f'> // "a" | "c"
+type T32 = Diff<string | number | (() => void), Function> // string | number
+type T33 = Filter<string | number | (() => void), Function> // () => void
+type NonNullable<T> = Diff<T, null | undefined> // Remove null and undefined from T
