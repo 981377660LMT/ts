@@ -40,14 +40,19 @@ class PhotoService {
 
   // delete
   async deleteOneById(id: number) {
-    return await (
+    return (await (
       await this.photoRepository.delete({ id })
-    ).affected
+    ).affected) as number
   }
 
-  // 查出外键关联
+  // 查出metadata关联
   async findByIdWithMetadata(id: number) {
     return await this.photoRepository.findOne({ id }, { relations: ['metadata'] })
+  }
+
+  // 查出albums关联
+  async findByIdWithAlbum(id: number) {
+    return await this.photoRepository.findOne({ id }, { relations: ['albums'] })
   }
 }
 

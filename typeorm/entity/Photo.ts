@@ -1,5 +1,7 @@
+import { Album } from './Album'
+import { Author } from './Author'
 import { PhotoMetadata } from './PhotoMetadata'
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, ManyToMany } from 'typeorm'
 import { MyBaseEntity } from './MyBaseEntity'
 
 @Entity()
@@ -21,4 +23,10 @@ export class Photo extends MyBaseEntity {
 
   @OneToOne(type => PhotoMetadata, PhotoMetadata => PhotoMetadata.photo)
   metadata!: PhotoMetadata
+
+  @ManyToOne(type => Author, author => author.photos, { onDelete: 'SET NULL' })
+  author!: Author
+
+  @ManyToMany(type => Album, album => album.photos)
+  albums!: Album[]
 }

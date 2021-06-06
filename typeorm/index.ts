@@ -11,7 +11,7 @@ createConnection({
   username: 'root',
   password: 'a2818088',
   database: 'test',
-  entities: ['entity/*.ts'],
+  entities: ['**/entity/*.ts'],
   synchronize: true,
   logging: ['error', 'warn', 'info'],
 })
@@ -25,7 +25,8 @@ createConnection({
     // metadata.photo = (await photoRepository.findOneById(1)) as Photo
     // console.log(await PhotoMetadataReposity.save(metadata))
     // console.log(await photoRepository.findOneById(1))
-    // console.log(await PhotoMetadataReposity.findOne({ id: 1 }))
+    console.log(await PhotoMetadataReposity.findOne({ id: 1 }, { relations: ['photo'] }))
     console.log(await photoRepository.findByIdWithMetadata(1))
+    console.log(await photoRepository.findByIdWithAlbum(1))
   })
   .catch((error: unknown) => console.log(error))
