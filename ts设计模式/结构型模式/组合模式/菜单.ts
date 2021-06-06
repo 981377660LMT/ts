@@ -29,6 +29,7 @@ class MenuItem extends MenuBase {
 
     if (this.length > 0) {
       let childs = this.reduce((p, c) => <MenuBase>{ name: `${p.name},${c.name}` }).name
+
       console.log(`${this.name}'s childs: ${childs}`)
     }
   }
