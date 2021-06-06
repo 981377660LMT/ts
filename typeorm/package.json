@@ -1,0 +1,12 @@
+{
+  "name": "typeorm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "go": "ts-node index.ts --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

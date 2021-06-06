@@ -3,20 +3,20 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 @Entity()
 export class Photo {
   @PrimaryGeneratedColumn()
-  id: number
+  id!: number
 
   @Column({ length: 100 })
-  name: string
+  name!: string
 
-  @Column('text')
-  description: string
-
-  @Column()
-  filename: string
-
-  @Column('double')
-  views: number
+  @Column({ type: 'text' })
+  description!: string
 
   @Column()
-  isPublished: boolean
+  filename!: string
+
+  @Column({ type: 'double' })
+  views!: number
+
+  @Column()
+  isPublished!: boolean
 }
