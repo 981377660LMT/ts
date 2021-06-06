@@ -13,15 +13,19 @@ createConnection({
   database: 'test',
   entities: ['entity/*.ts'],
   synchronize: true,
-  logging: 'all',
+  logging: ['error', 'warn', 'info'],
 })
   .then(async connection => {
     // 这里可以写实体操作相关的代码
     const photoRepository = PhotoService.getPhotoServiceInstance(connection.getRepository(Photo))
     const PhotoMetadataReposity = connection.getRepository(PhotoMetadata)
-    const metadata = new PhotoMetadata()
-    metadata.comment = 'foooooooo'
-    metadata.photo = (await photoRepository.findOneById(2)) as Photo
-    console.log(await PhotoMetadataReposity.save(metadata))
+
+    // const metadata = new PhotoMetadata()
+    // metadata.comment = 'foooooooo'
+    // metadata.photo = (await photoRepository.findOneById(1)) as Photo
+    // console.log(await PhotoMetadataReposity.save(metadata))
+    // console.log(await photoRepository.findOneById(1))
+    // console.log(await PhotoMetadataReposity.findOne({ id: 1 }))
+    console.log(await photoRepository.findByIdWithMetadata(1))
   })
   .catch((error: unknown) => console.log(error))

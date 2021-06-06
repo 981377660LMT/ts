@@ -1,17 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { PhotoMetadata } from './PhotoMetadata'
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm'
+import { MyBaseEntity } from './MyBaseEntity'
 
 @Entity()
-export class Photo {
-  @PrimaryGeneratedColumn()
-  id!: number
-
+export class Photo extends MyBaseEntity {
   @Column({ length: 100 })
   name!: string
 
   @Column({ type: 'text' })
   description!: string
 
-  @Column()
+  @Column({ length: 100 })
   filename!: string
 
   @Column({ type: 'double' })
@@ -19,4 +18,7 @@ export class Photo {
 
   @Column()
   isPublished!: boolean
+
+  @OneToOne(type => PhotoMetadata, PhotoMetadata => PhotoMetadata.photo)
+  metadata!: PhotoMetadata
 }

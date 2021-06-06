@@ -44,6 +44,11 @@ class PhotoService {
       await this.photoRepository.delete({ id })
     ).affected
   }
+
+  // 查出外键关联
+  async findByIdWithMetadata(id: number) {
+    return await this.photoRepository.findOne({ id }, { relations: ['metadata'] })
+  }
 }
 
 export { PhotoService }

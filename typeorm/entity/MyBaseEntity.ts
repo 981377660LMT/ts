@@ -1,6 +1,12 @@
-import { Column } from 'typeorm'
+import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
-class MyBaseEntity {
-  @Column({ type: 'datetime' })
-  createTime!: Date
+export abstract class MyBaseEntity {
+  @PrimaryGeneratedColumn()
+  id!: number
+
+  @CreateDateColumn()
+  createdTime!: Date
+
+  @UpdateDateColumn()
+  updatedTime!: Date
 }
