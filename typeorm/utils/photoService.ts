@@ -11,7 +11,7 @@ photo.isPublished = true
 
 // 当你经常处理实体时，Repositories 比 EntityManagers 更方便使用
 class PhotoService {
-  private static instance: PhotoService
+  private static readonly instance: PhotoService
   static getPhotoServiceInstance(photoRepository: Repository<Photo>) {
     return this.instance || new PhotoService(photoRepository)
   }
