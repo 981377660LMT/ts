@@ -12,6 +12,9 @@ class Katana implements Weapon {
 
 @injectable()
 class Shuriken implements ThrowableWeapon {
+  // 试一下循环依赖
+  // Error: Circular dependency found: Symbol(Warrior) --> Symbol(ThrowableWeapon) --> Symbol(Warrior)
+  // constructor(@inject(TYPES.Warrior) private ninja: Ninja) {}
   public throw() {
     return 'hit!'
   }
