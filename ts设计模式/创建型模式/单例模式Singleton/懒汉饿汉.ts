@@ -1,7 +1,7 @@
 /* 懒汉单例 */
 class PeopleSingle {
   // 静态成员instance
-  static instance: PeopleSingle
+  private static instance: PeopleSingle
   // 私有构造函数
   private constructor() {}
   public static getInstance() {
