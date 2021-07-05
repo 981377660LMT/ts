@@ -18,3 +18,17 @@ const x = extend({ a: 'hello' }, { b: 42 })
 
 // 现在 x 拥有了 a 属性与 b 属性
 const asa = x.a
+
+interface A {
+  name: string
+  age: number
+}
+
+interface B {
+  name: number
+  birth: string
+}
+
+type C = A & B
+
+export {}

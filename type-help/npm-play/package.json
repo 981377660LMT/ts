@@ -1,0 +1,16 @@
+{
+  "name": "npm-play",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zce <w@zce.me> (https://zce.me/)",
+  "license": "MIT",
+  "dependencies": {
+    "gifsicle": "^5.1.0",
+    "gulp-imagemin": "^7.1.0",
+    "node-sass": "^5.0.0"
+  }
+}
