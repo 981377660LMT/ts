@@ -49,3 +49,5 @@ type Union = ElementOf<[string, number]> // string | number
 //   : never
 
 // type Result = UnionToIntersection<T1 | T2> // T1 & T2
+
+export {}
