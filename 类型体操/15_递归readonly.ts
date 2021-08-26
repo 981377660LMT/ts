@@ -1,8 +1,6 @@
-type DeepReadonly<T> = T extends (...args: any[]) => any
-  ? T
-  : T extends Array<any>
+type DeepReadonly<T> = T extends Array<any>
   ? DeepReadonlyArray<T[number]>
-  : T extends object
+  : T extends Record<PropertyKey, any>
   ? DeepReadonlyObject<T>
   : T
 

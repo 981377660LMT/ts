@@ -2,7 +2,7 @@ type LengthOfString<S extends string, T extends any[] = []> = S extends `${infer
   ? LengthOfString<R, [...T, L]>
   : T['length']
 
-type L = LengthOfString<'as'>
+type L = LengthOfString<'asas'>
 
 // false
 type FF1 = '' extends `${infer F}${infer R}` ? true : false

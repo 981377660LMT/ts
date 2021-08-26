@@ -54,3 +54,5 @@ type B3 = Foo<{ a: string; b: string }>
 // type T2 = string | number
 type B4 = Foo<{ a: string; b: number }>
 /////////////////////////////////////////////////////////////////
+
+export {}
