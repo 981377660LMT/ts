@@ -32,4 +32,12 @@ interface ObjectConstructor {
 }
 
 declare var Object: ObjectConstructor
+
 // object表示非基础类型
+
+// 用处:
+// 1.object限制非基础类型
+// 2.Object/{}限制类型不为null/undefined
+// const fff1: Object = null
+// const fff2: {} = undefined
+// const fff3: object = 1

@@ -1,4 +1,6 @@
 // interface 内的key带括号是函数声明
+// ts 的函数重载和 c++、java 等语言中的函数重载不一样。ts 函数重载最终，还是编译成一个函数（c 语言等是编译成不同函数）。
+// 它的目的仅仅是提供编译器进行更多种类的类型判断，而不需要使用“类型断言”技术。
 interface SearchFunc {
   (source: string, subString: string): boolean
 }

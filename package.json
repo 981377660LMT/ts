@@ -12,6 +12,7 @@
   "dependencies": {
     "inversify": "^5.1.1",
     "mysql": "^2.18.1",
+    "named-tuple": "^0.1.1",
     "react": "^17.0.2",
     "reflect-metadata": "^0.1.13",
     "type-fest": "^1.2.2",
