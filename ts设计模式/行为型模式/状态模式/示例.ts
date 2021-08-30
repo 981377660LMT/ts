@@ -1,30 +1,17 @@
-/**
- * The Context defines the interface of interest to clients. It also maintains a
- * reference to an instance of a State subclass, which represents the current
- * state of the Context.
- */
+// 状态定义/转移/方法
 class Context {
-  /**
-   * @type {State} A reference to the current state of the Context.
-   */
   private state!: State
 
   constructor(state: State) {
-    this.transitionTo(state)
+    this.switchTo(state)
   }
 
-  /**
-   * The Context allows changing the State object at runtime.
-   */
-  public transitionTo(state: State): void {
+  public switchTo(state: State): void {
     console.log(`Context: Transition to ${(<any>state).constructor.name}.`)
     this.state = state
     this.state.setContext(this)
   }
 
-  /**
-   * The Context delegates part of its behavior to the current State object.
-   */
   public request1(): void {
     this.state.handle1()
   }
@@ -34,12 +21,6 @@ class Context {
   }
 }
 
-/**
- * The base State class declares methods that all Concrete State should
- * implement and also provides a backreference to the Context object, associated
- * with the State. This backreference can be used by States to transition the
- * Context to another State.
- */
 abstract class State {
   protected context!: Context
 
@@ -52,15 +33,11 @@ abstract class State {
   public abstract handle2(): void
 }
 
-/**
- * Concrete States implement various behaviors, associated with a state of the
- * Context.
- */
 class ConcreteStateA extends State {
   public handle1(): void {
     console.log('ConcreteStateA handles request1.')
     console.log('ConcreteStateA wants to change the state of the context.')
-    this.context.transitionTo(new ConcreteStateB())
+    this.context.switchTo(new ConcreteStateB())
   }
 
   public handle2(): void {
@@ -76,13 +53,10 @@ class ConcreteStateB extends State {
   public handle2(): void {
     console.log('ConcreteStateB handles request2.')
     console.log('ConcreteStateB wants to change the state of the context.')
-    this.context.transitionTo(new ConcreteStateA())
+    this.context.switchTo(new ConcreteStateA())
   }
 }
 
-/**
- * The client code.
- */
 const context = new Context(new ConcreteStateA())
 context.request1()
 context.request2()

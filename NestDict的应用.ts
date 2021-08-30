@@ -19,9 +19,7 @@ const entry: NestDict = {
 //   'a.e': 'ae',
 // }
 
-interface NestDict {
-  [key: string]: NestDict | string
-}
+interface NestDict extends Record<string, NestDict | string> {}
 
 type Dict<T> = Record<PropertyKey, T>
 

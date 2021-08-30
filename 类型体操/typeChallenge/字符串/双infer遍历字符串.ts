@@ -7,3 +7,5 @@ type Foo1 = Test1<'asd'>
 type Foo2 = Test2<'asd'>
 type Foo3 = Test2<'a'>
 type Foo4 = Test1<'a'>
+
+export {}

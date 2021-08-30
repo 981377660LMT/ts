@@ -4,3 +4,5 @@ type LoopUnion<Union extends string, Item extends string = Union> = Item extends
   : never
 
 type R = LoopUnion<'A' | 'B' | 'C'>
+
+export {}

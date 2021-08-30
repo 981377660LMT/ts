@@ -5,17 +5,17 @@
 
 // 菜单可以包括子菜单，点击菜单项时有子菜单则显示子菜单，没有时触发点击事件。
 // 扩展内建类
-abstract class MenuBase extends Array<MenuBase> {
+abstract class AbstractMenu extends Array<AbstractMenu> {
   abstract name: string
 
   abstract click(): void
 
-  addChild(...childs: Array<MenuBase>) {
+  addChild(...childs: Array<AbstractMenu>) {
     childs.forEach(o => this.push(o))
   }
 }
 
-class MenuItem extends MenuBase {
+class MenuItem extends AbstractMenu {
   constructor(public name: string, private clickFunc?: () => string) {
     super()
   }
@@ -28,7 +28,7 @@ class MenuItem extends MenuBase {
     }
 
     if (this.length > 0) {
-      let childs = this.reduce((p, c) => <MenuBase>{ name: `${p.name},${c.name}` }).name
+      let childs = this.reduce((p, c) => <AbstractMenu>{ name: `${p.name},${c.name}` }).name
 
       console.log(`${this.name}'s childs: ${childs}`)
     }
