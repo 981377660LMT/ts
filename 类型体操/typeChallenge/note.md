@@ -14,7 +14,7 @@ K in keyof T 指的是提取对象的key
 [K in Exclude<keyof O1, keyof O2>]
 [K in keyof { a: 666 }]
 
-3.
+3. 键重新映射
 **对键作出限制**的模板
 使用 as 承接后面的逻辑
 type DoSomethingWithKeys<T extends object,U>={

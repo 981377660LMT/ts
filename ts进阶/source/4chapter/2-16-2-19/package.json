@@ -1,0 +1,15 @@
+{
+  "name": "2-16",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startparcel": "parcel ./index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  }
+}

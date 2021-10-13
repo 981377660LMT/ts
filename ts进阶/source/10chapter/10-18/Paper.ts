@@ -1,0 +1,7 @@
+
+
+class Paper {
+  show() {
+
+  }
+}

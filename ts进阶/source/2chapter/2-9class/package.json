@@ -1,0 +1,16 @@
+{
+  "name": "2-6class",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startparcel": "parcel ./index.html",
+    "start": "nodemon --watch src/ -e ts --exec ts-node ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}

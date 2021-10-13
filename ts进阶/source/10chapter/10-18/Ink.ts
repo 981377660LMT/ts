@@ -1,0 +1,8 @@
+
+class Ink {
+
+  show(): void {
+
+  }
+
+}
