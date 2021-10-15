@@ -1,0 +1,1 @@
+type AllPathof = 1

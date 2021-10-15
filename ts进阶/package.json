@@ -1,0 +1,14 @@
+{
+  "name": "ts-advance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "草莓奶昔",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^3.2.20"
+  }
+}

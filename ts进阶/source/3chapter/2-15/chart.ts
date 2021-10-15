@@ -6,6 +6,7 @@ interface ISquare {
 class Square implements ISquare {
   width: number
   height: number
+
   constructor(width: number, height: number)
   constructor(value: ISquare)
   constructor(valueOrWidth: number | ISquare, height?: number) {

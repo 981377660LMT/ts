@@ -4,37 +4,31 @@
 //   否则这两个类就不能相互断言
 
 class People {
-  constructor(public username: string, public age: number,
-    public address: string) {
-
-  }
+  constructor(public username: string, public age: number, public address: string) {}
 }
 
 class Stu {
-  public  username!: string
-  public age!: number;
-  public address!: string// 类型 "Stu" 中缺少属性 "address"，但类型 "typestu2" 中需要该属性。t
-  public phone!:string;
+  public username!: string
+  public age!: number
+  public address!: string // 类型 "Stu" 中缺少属性 "address"，但类型 "typestu2" 中需要该属性。t
+  // public phone!: string
   constructor(username: string, age: number, address: string) {
     //  super(username, age);
-    this.address = address;
+    this.address = address
   }
   // public study(){
 
   // }
-
 }
 
-
-
-let people = new People("wangwu", 23, "beijing")
-let stuedConvert = people as Stu;//
-//let stuedConvert = <Stu>people;//
+let people = new People('wangwu', 23, 'beijing')
+let stuedConvert = people as Stu //
+// let stuedConvert = <Stu>people;//
 
 //stuedConvert.study();
 
-let stu = new Stu("wangwu", 23, "北京")
-let peopledConvert=stu as People;// 
+let stu = new Stu('wangwu', 23, '北京')
+let peopledConvert = stu as People //
 //peopledConvert.
 
-export { }
+export {}

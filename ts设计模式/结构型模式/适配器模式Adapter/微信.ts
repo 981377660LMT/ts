@@ -1,7 +1,7 @@
 //小游戏的运行环境在iOS上是JavaScriptCore，在Android上是V8，都是没有BOM和DOM的运行环境，没有全局document和window对象。因此当你在小游戏环境下希望使用DOM API来创建Canvas和Image等元素的时候，会引发错误。
 // const canvas = document.createElement('canvas') //erro
 
-declare class wx {
+class wx {
   static createImage() {
     throw new Error('Method not implemented.')
   }

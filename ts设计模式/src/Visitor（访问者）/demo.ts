@@ -1,173 +1,172 @@
-//Ò»¸ö¹«Ë¾ÓÐÁ½ÖÖÔ±¹¤£¬ÕýÊ½¹¤ºÍÁÙÊ±¹¤£¬ËûÃÇÓÐ²»Í¬µÄ¹¤Ê±ºÍÐ½³ê½áËã·½·¨¡£
-// Ô±¹¤½Ó¿Ú
+//Ò»ï¿½ï¿½ï¿½ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½Í¬ï¿½Ä¹ï¿½Ê±ï¿½ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ã·½ï¿½ï¿½ï¿½ï¿½
+// Ô±ï¿½ï¿½ï¿½Ó¿ï¿½
 interface Employee {
-    accept(handler: Department): void
+  accept(handler: Department): void
 }
 
-// È«Ö°Ô±¹¤Àà
+// È«Ö°Ô±ï¿½ï¿½ï¿½ï¿½
 class FulltimeEmployee implements Employee {
-    private name = ''
-    // È«Ö°Ô±¹¤°´ÖÜÐ½¼ÆËãÐ½³ê
-    private weeklyWage = 0
-    // ¹¤×÷Ê±³¤
-    private workTime = 0
-    constructor(name: string, weeklyWage: number, workTime: number) {
-        this.name = name
-        this.weeklyWage = weeklyWage
-        this.workTime = workTime
-    }
-    getName(): string {
-        return this.name
-    }
-    getWeeklyWage(): number {
-        return this.weeklyWage
-    }
-    getWorkTime(): number {
-        return this.workTime
-    }
-    // ÊµÏÖ½Ó¿Ú£¬µ÷ÓÃ·ÃÎÊÕß´¦ÀíÈ«Ö°Ô±¹¤µÄ·½·¨
-    accept(handler: Department) {
-        handler.visitFulltime(this)
-    }
+  private name = ''
+  // È«Ö°Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½
+  private weeklyWage = 0
+  // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+  private workTime = 0
+  constructor(name: string, weeklyWage: number, workTime: number) {
+    this.name = name
+    this.weeklyWage = weeklyWage
+    this.workTime = workTime
+  }
+  getName(): string {
+    return this.name
+  }
+  getWeeklyWage(): number {
+    return this.weeklyWage
+  }
+  getWorkTime(): number {
+    return this.workTime
+  }
+  // Êµï¿½Ö½Ó¿Ú£ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½È«Ö°Ô±ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
+  accept(handler: Department) {
+    handler.visitFulltime(this)
+  }
 }
 
-// ÁÙÊ±Ô±¹¤Àà
+// ï¿½ï¿½Ê±Ô±ï¿½ï¿½ï¿½ï¿½
 class ParttimeEmployee implements Employee {
-    private name = ''
-    // ÁÙÊ±Ô±¹¤°´Ê±Ð½¼ÆËãÐ½³ê
-    private hourWage = 0
-    // ¹¤×÷Ê±³¤
-    private workTime = 0
-    constructor(name: string, hourWage: number, workTime: number) {
-        this.name = name
-        this.hourWage = hourWage
-        this.workTime = workTime
-    }
-    getName(): string {
-        return this.name
-    }
-    getHourWage(): number {
-        return this.hourWage
-    }
-    getWorkTime(): number {
-        return this.workTime
-    }
-    // ÊµÏÖ½Ó¿Ú£¬µ÷ÓÃ·ÃÎÊÕß´¦ÀíÁÙÊ±¹¤µÄ·½·¨
-    accept(handler: Department) {
-        handler.visitParttime(this)
-    }
+  private name = ''
+  // ï¿½ï¿½Ê±Ô±ï¿½ï¿½ï¿½ï¿½Ê±Ð½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½
+  private hourWage = 0
+  // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+  private workTime = 0
+  constructor(name: string, hourWage: number, workTime: number) {
+    this.name = name
+    this.hourWage = hourWage
+    this.workTime = workTime
+  }
+  getName(): string {
+    return this.name
+  }
+  getHourWage(): number {
+    return this.hourWage
+  }
+  getWorkTime(): number {
+    return this.workTime
+  }
+  // Êµï¿½Ö½Ó¿Ú£ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
+  accept(handler: Department) {
+    handler.visitParttime(this)
+  }
 }
 
-// ²¿ÃÅ½Ó¿Ú
+// ï¿½ï¿½ï¿½Å½Ó¿ï¿½
 interface Department {
-    visitFulltime(employee: FulltimeEmployee): void
-    visitParttime(employee: ParttimeEmployee): void
+  visitFulltime(employee: FulltimeEmployee): void
+  visitParttime(employee: ParttimeEmployee): void
 }
 
-// ¾ßÌå·ÃÎÊÕß¡ª¡ª²ÆÎñ²¿£¬½áËãÐ½³êÊµÏÖ²¿ÃÅ½Ó¿Ú
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ñ²¿£ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½Êµï¿½Ö²ï¿½ï¿½Å½Ó¿ï¿½
 class FADepartment implements Department {
-    // È«Ö°Ô±¹¤Ð½³ê¼ÆËã·½Ê½
-    visitFulltime(employee: FulltimeEmployee) {
-        const name: string = employee.getName()
-        let workTime: number = employee.getWorkTime()
-        let weekWage: number = employee.getWeeklyWage()
-        const WEEK_WORK_TIME = 40
-        if (workTime > WEEK_WORK_TIME) {
-            // ¼ÆËã¼Ó°à¹¤×Ê
-            const OVER_TIME_WAGE = 100
-            weekWage = weekWage + (workTime - WEEK_WORK_TIME) * OVER_TIME_WAGE
-        } else if (workTime < WEEK_WORK_TIME) {
-            if (workTime < 0) {
-                workTime = 0
-            }
-            // ¿Û¿î
-            const CUT_PAYMENT = 80
-            weekWage = weekWage - (WEEK_WORK_TIME - workTime) * CUT_PAYMENT
-        }
-        console.log(`ÕýÊ½Ô±¹¤ ${name} Êµ¼Ê¹¤×ÊÎª£º${weekWage}`)
+  // È«Ö°Ô±ï¿½ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ã·½Ê½
+  visitFulltime(employee: FulltimeEmployee) {
+    const name: string = employee.getName()
+    let workTime: number = employee.getWorkTime()
+    let weekWage: number = employee.getWeeklyWage()
+    const WEEK_WORK_TIME = 40
+    if (workTime > WEEK_WORK_TIME) {
+      // ï¿½ï¿½ï¿½ï¿½Ó°à¹¤ï¿½ï¿½
+      const OVER_TIME_WAGE = 100
+      weekWage = weekWage + (workTime - WEEK_WORK_TIME) * OVER_TIME_WAGE
+    } else if (workTime < WEEK_WORK_TIME) {
+      if (workTime < 0) {
+        workTime = 0
+      }
+      // ï¿½Û¿ï¿½
+      const CUT_PAYMENT = 80
+      weekWage = weekWage - (WEEK_WORK_TIME - workTime) * CUT_PAYMENT
     }
-    // ÁÙÊ±¹¤Ð½³ê¼ÆËã·½Ê½
-    visitParttime(employee: ParttimeEmployee) {
-        const name = employee.getName()
-        const hourWage = employee.getHourWage()
-        const workTime = employee.getWorkTime()
-        console.log(`ÁÙÊ±¹¤ ${name} Êµ¼Ê¹¤×ÊÎª£º${hourWage * workTime}`)
-    }
+    console.log(`ï¿½ï¿½Ê½Ô±ï¿½ï¿½ ${name} Êµï¿½Ê¹ï¿½ï¿½ï¿½Îªï¿½ï¿½${weekWage}`)
+  }
+  // ï¿½ï¿½Ê±ï¿½ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ã·½Ê½
+  visitParttime(employee: ParttimeEmployee) {
+    const name = employee.getName()
+    const hourWage = employee.getHourWage()
+    const workTime = employee.getWorkTime()
+    console.log(`ï¿½ï¿½Ê±ï¿½ï¿½ ${name} Êµï¿½Ê¹ï¿½ï¿½ï¿½Îªï¿½ï¿½${hourWage * workTime}`)
+  }
 }
 
-// ¾ßÌå·ÃÎÊÕß¡ª¡ªÈËÁ¦×ÊÔ´²¿£¬½áËã¹¤×÷Ê±¼ä£¬ÊµÏÖ²¿ÃÅ½Ó¿Ú
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã¹¤ï¿½ï¿½Ê±ï¿½ä£¬Êµï¿½Ö²ï¿½ï¿½Å½Ó¿ï¿½
 class HRDepartment implements Department {
-    // È«Ö°Ô±¹¤¹¤×÷Ê±¼ä±¨¸æ
-    visitFulltime(employee: FulltimeEmployee) {
-        const name: string = employee.getName()
-        let workTime: number = employee.getWorkTime()
-        // Êµ¼Ê¹¤×÷Ê±¼ä±¨¸æ
-        let report = `ÕýÊ½Ô±¹¤ ${name} Êµ¼Ê¹¤×÷Ê±¼äÎª ${workTime} Ð¡Ê±`
-        const WEEK_WORK_TIME = 40
-        if (workTime > WEEK_WORK_TIME) {
-            // ¼Ó°àÊ±¼ä±¨¸æ
-            report = `${report}£¬¼Ó°à ${WEEK_WORK_TIME - workTime} Ð¡Ê±`
-        } else if (workTime < WEEK_WORK_TIME) {
-            if (workTime < 0) {
-                workTime = 0
-            }
-            // Çë¼ÙÊ±¼ä±¨¸æ
-            report = `${report}£¬Çë¼Ù ${WEEK_WORK_TIME - workTime} Ð¡Ê±`
-        }
-        console.log(report)
+  // È«Ö°Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä±¨ï¿½ï¿½
+  visitFulltime(employee: FulltimeEmployee) {
+    const name: string = employee.getName()
+    let workTime: number = employee.getWorkTime()
+    // Êµï¿½Ê¹ï¿½ï¿½ï¿½Ê±ï¿½ä±¨ï¿½ï¿½
+    let report = `ï¿½ï¿½Ê½Ô±ï¿½ï¿½ ${name} Êµï¿½Ê¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îª ${workTime} Ð¡Ê±`
+    const WEEK_WORK_TIME = 40
+    if (workTime > WEEK_WORK_TIME) {
+      // ï¿½Ó°ï¿½Ê±ï¿½ä±¨ï¿½ï¿½
+      report = `${report}ï¿½ï¿½ï¿½Ó°ï¿½ ${WEEK_WORK_TIME - workTime} Ð¡Ê±`
+    } else if (workTime < WEEK_WORK_TIME) {
+      if (workTime < 0) {
+        workTime = 0
+      }
+      // ï¿½ï¿½ï¿½Ê±ï¿½ä±¨ï¿½ï¿½
+      report = `${report}ï¿½ï¿½ï¿½ï¿½ï¿½ ${WEEK_WORK_TIME - workTime} Ð¡Ê±`
     }
-    // ÁÙÊ±¹¤¹¤×÷Ê±¼ä±¨¸æ
-    visitParttime(employee: ParttimeEmployee) {
-        const name: string = employee.getName()
-        const workTime: number = employee.getWorkTime()
-        console.log(`ÁÙÊ±¹¤ ${name} Êµ¼Ê¹¤×÷Ê±¼äÎª ${workTime} Ð¡Ê±`)
-    }
+    console.log(report)
+  }
+  // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä±¨ï¿½ï¿½
+  visitParttime(employee: ParttimeEmployee) {
+    const name: string = employee.getName()
+    const workTime: number = employee.getWorkTime()
+    console.log(`ï¿½ï¿½Ê±ï¿½ï¿½ ${name} Êµï¿½Ê¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îª ${workTime} Ð¡Ê±`)
+  }
 }
 
-// Ô±¹¤¼¯ºÏÀà
+// Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 class EmployeeList {
-    list: Array<Employee> = []
-    add(employee: Employee) {
-        this.list.push(employee)
-    }
-    // ±éÀúÔ±¹¤¼¯ºÏÖÐµÄÃ¿Ò»¸ö¶ÔÏó
-    accept(handler: Department) {
-        this.list.forEach((employee: Employee) => {
-            employee.accept(handler)
-        })
-    }
+  list: Array<Employee> = []
+  add(employee: Employee) {
+    this.list.push(employee)
+  }
+  // ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  accept(handler: Department) {
+    this.list.forEach((employee: Employee) => {
+      employee.accept(handler)
+    })
+  }
 }
-
 
 class Client {
-    public static main(): void {
-        const list: EmployeeList = new EmployeeList()
-        const full1 = new FulltimeEmployee('Bob', 3000, 45)
-        const full2 = new FulltimeEmployee('Mikel', 2000, 35)
-        const full3 = new FulltimeEmployee('Joe', 4000, 40)
-        const part1 = new ParttimeEmployee('Lili', 80, 20)
-        const part2 = new ParttimeEmployee('Lucy', 60, 15)
-        list.add(full1)
-        list.add(full2)
-        list.add(full3)
-        list.add(part1)
-        list.add(part2)
-        // ²ÆÎñ²¿¼ÆËãÐ½³ê
-        const faHandler = new FADepartment()
-        list.accept(faHandler)
-        // ÈËÁ¦×ÊÔ´²¿³ö¹¤×÷±¨¸æ
-        const hrHandler = new HRDepartment()
-        list.accept(hrHandler)
-    }
+  public static main(): void {
+    const list: EmployeeList = new EmployeeList()
+    const full1 = new FulltimeEmployee('Bob', 3000, 45)
+    const full2 = new FulltimeEmployee('Mikel', 2000, 35)
+    const full3 = new FulltimeEmployee('Joe', 4000, 40)
+    const part1 = new ParttimeEmployee('Lili', 80, 20)
+    const part2 = new ParttimeEmployee('Lucy', 60, 15)
+    list.add(full1)
+    list.add(full2)
+    list.add(full3)
+    list.add(part1)
+    list.add(part2)
+    // ï¿½ï¿½ï¿½ñ²¿¼ï¿½ï¿½ï¿½Ð½ï¿½ï¿½
+    const faHandler = new FADepartment()
+    list.accept(faHandler)
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    const hrHandler = new HRDepartment()
+    list.accept(hrHandler)
+  }
 }
 Client.main()
 
-// ÕýÊ½Ô±¹¤ Bob Êµ¼Ê¹¤×ÊÎª£º3500
-// ÕýÊ½Ô±¹¤ Mikel Êµ¼Ê¹¤×ÊÎª£º1600
-// ÕýÊ½Ô±¹¤ Joe Êµ¼Ê¹¤×ÊÎª£º4000
-// ÁÙÊ±¹¤ Lili Êµ¼Ê¹¤×ÊÎª£º1600
-// ÁÙÊ±¹¤ Lucy Êµ¼Ê¹¤×ÊÎª£º900
-// ÕýÊ½Ô±¹¤ Bob Êµ¼Ê¹¤×÷Ê±¼äÎª 45 Ð¡Ê±£¬¼Ó°à -5 Ð¡Ê±
-// ÕýÊ½Ô±¹¤ Mikel Êµ¼Ê¹¤×÷Ê±¼äÎª 35 Ð¡Ê±£¬Çë¼Ù 5 Ð¡Ê±
-// ÕýÊ½Ô±¹¤ Joe Êµ¼Ê¹¤×÷Ê±¼äÎª 40 Ð¡Ê±
-// ÁÙÊ±¹¤ Lili Êµ¼Ê¹¤×÷Ê±¼äÎª 20 Ð¡Ê±
+// ï¿½ï¿½Ê½Ô±ï¿½ï¿½ Bob Êµï¿½Ê¹ï¿½ï¿½ï¿½Îªï¿½ï¿½3500
+// ï¿½ï¿½Ê½Ô±ï¿½ï¿½ Mikel Êµï¿½Ê¹ï¿½ï¿½ï¿½Îªï¿½ï¿½1600
+// ï¿½ï¿½Ê½Ô±ï¿½ï¿½ Joe Êµï¿½Ê¹ï¿½ï¿½ï¿½Îªï¿½ï¿½4000
+// ï¿½ï¿½Ê±ï¿½ï¿½ Lili Êµï¿½Ê¹ï¿½ï¿½ï¿½Îªï¿½ï¿½1600
+// ï¿½ï¿½Ê±ï¿½ï¿½ Lucy Êµï¿½Ê¹ï¿½ï¿½ï¿½Îªï¿½ï¿½900
+// ï¿½ï¿½Ê½Ô±ï¿½ï¿½ Bob Êµï¿½Ê¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îª 45 Ð¡Ê±ï¿½ï¿½ï¿½Ó°ï¿½ -5 Ð¡Ê±
+// ï¿½ï¿½Ê½Ô±ï¿½ï¿½ Mikel Êµï¿½Ê¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îª 35 Ð¡Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ 5 Ð¡Ê±
+// ï¿½ï¿½Ê½Ô±ï¿½ï¿½ Joe Êµï¿½Ê¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îª 40 Ð¡Ê±
+// ï¿½ï¿½Ê±ï¿½ï¿½ Lili Êµï¿½Ê¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îª 20 Ð¡Ê±

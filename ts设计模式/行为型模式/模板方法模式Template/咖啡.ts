@@ -17,6 +17,7 @@ abstract class CaffeineBeverage {
     console.log('倒进杯子')
   }
 }
+
 class Coffee extends CaffeineBeverage {
   public brew() {
     console.log('冲泡咖啡')
