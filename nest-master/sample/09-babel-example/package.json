@@ -1,0 +1,48 @@
+{
+  "name": "nest-babel-starter",
+  "version": "1.0.0",
+  "description": "Nest Babel starter repository",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --write \"**/*.js\"",
+    "build": "babel src -d dist",
+    "start": "babel-node index.js",
+    "start:dev": "nodemon",
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:e2e": "echo 'No e2e tests implemented yet.'"
+  },
+  "dependencies": {
+    "@nestjs/common": "8.0.11",
+    "@nestjs/core": "8.0.11",
+    "@nestjs/platform-express": "8.0.11",
+    "@nestjs/microservices": "8.0.11",
+    "@nestjs/websockets": "8.0.11",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.4.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.15.7",
+    "@babel/core": "7.15.8",
+    "@babel/node": "7.15.8",
+    "@babel/plugin-proposal-decorators": "7.15.8",
+    "@babel/plugin-transform-runtime": "7.15.8",
+    "@babel/preset-env": "7.15.8",
+    "@babel/register": "7.15.3",
+    "@babel/runtime": "7.15.4",
+    "@nestjs/testing": "8.0.11",
+    "jest": "27.2.5",
+    "nodemon": "2.0.13",
+    "prettier": "2.4.1",
+    "supertest": "6.1.6"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.js$",
+    "coverageDirectory": "../coverage"
+  }
+}

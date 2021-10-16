@@ -1,0 +1,10 @@
+  rootState:{"foodSortModule":美食分类state数据对象,
+                            :{"foodModule":"美食state数据对象"}
+                                          :{"foodDetailModule":"美食分类详情state数据对象"}
+                             }// 美食state结束
+          }// 美食分类state结束,
+                                           
+          "hotelSortModule":酒店分类state数据对象,} 
+    }// rootState对象结束
+
+  path:["foodSortModule", "foodModule","foodDetailModule"]

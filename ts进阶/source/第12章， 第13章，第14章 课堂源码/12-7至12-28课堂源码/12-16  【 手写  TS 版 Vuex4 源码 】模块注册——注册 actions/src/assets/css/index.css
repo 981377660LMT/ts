@@ -1,0 +1,174 @@
+html,body {
+    margin:0;
+    width: 100%;
+    height: 100%;
+  }
+  a {
+      text-decoration: none;
+      color: #000;
+  }
+  
+  ul {
+      list-style: none;
+      margin:0;
+      padding:0;
+  }
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    width: 100%;
+    height: 100%;
+  }
+  .nav-bottom {
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    background: #ff304e;
+    border-top: 1px solid #f4f4f4;
+    width: 100%;
+    padding-top: 5px;
+}
+.nav-bottom > a {
+    display: inline-block;
+    width: 25%;
+    color:#fff;
+}
+.nav-bottom i {
+    font-size:22px;
+}
+.nav-bottom label {
+    display: block;
+}
+
+.banner {
+  position: relative;
+}
+.banner .banner-circle {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  color: #fff;
+}
+.banner .banner-circle li{
+  display:inline-block;
+  background: rgba(0,0,0,.3);
+  border-radius: 50%;
+  padding:6px;
+  margin:4px;
+}
+.banner .banner-circle ul {
+  text-align: center;
+}
+.banner .banner-circle .selected {
+ background: #ff304e;
+}
+.banner img {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+/*index-category*/
+.index-category {
+  margin-top: 5%;
+}
+.index-category .category {
+  width: 25%;
+  float:left;
+  text-align:center;
+}
+.index-category .category .iconfont {
+  font-size: 30px;
+  display: inline-block;
+  padding: 2px 20px;
+  border-radius: 20px;
+  color: #fff;
+}
+.index-category .category .iconfont{
+  background: #92d85c;
+}
+.index-category .category label {
+  display: block;
+  padding: 10% 0;
+  color: #999;
+}
+/*index-category end*/
+
+/*index-main*/
+.index-main {
+  width: 100%;
+  height: 100%;
+  background: #27bfd2;
+}
+
+.index-main >ul {
+  margin: 10px;
+}
+.index-main ul .lists {
+  width: 30%;
+  float: left;
+  display: inline-block;
+  text-align: center;
+  margin: 5px;
+  font-size:14px;
+}
+.index-main ul .lists img {
+  max-width:100%;
+}
+.index-main ul .lists .discount{
+  color: red;
+}
+.index-main ul .lists .price-text{
+  text-decoration: line-through;
+  display:block;
+}
+/*index-main end*/
+
+.detail .goback {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: rgba(0,0,0,.5);
+  border-radius: 50%;
+  line-height: 50px;
+  color: #fff;
+  left: 10px;
+  top: 10px;
+}
+.detail img {
+width:100%;
+max-height:500px;
+}
+.detail p {
+text-align:left;
+padding:0 10px;
+}
+.detail p:first-child {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.bg {
+  height:100%;
+  background: rgb(2, 148, 250);
+}
+.chart-top {
+  height: 25%;
+  background: rgb(2, 148, 250);
+   border-bottom:1px solid #fff;
+}
+.map {
+  height: 40%;
+  background: rgb(2, 148, 250);
+   border-bottom:1px solid #fff;
+}
+.chart-bottom {
+  height: 25%;
+  background: rgb(2, 148, 250);
+}
+#chart {
+  margin: 0 auto;
+}

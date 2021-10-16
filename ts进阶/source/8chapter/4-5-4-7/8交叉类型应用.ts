@@ -13,7 +13,7 @@ interface Href {
 enum Openlocation {
   self = 0,
   _blank,
-  parent
+  parent,
 }
 let button: Button = {
   btntype: 'normal',
@@ -21,29 +21,28 @@ let button: Button = {
 }
 let link: Link = {
   alt: 'goto baidu',
-  href: 'http://www.baidu.com'
+  href: 'http://www.baidu.com',
 }
 let href: Href = {
-  linktype: "外网",
-  target: Openlocation._blank
+  linktype: '外网',
+  target: Openlocation._blank,
 }
 
-function cross<T extends object, U extends object>(objOne: T,
-  objTwo: U): T & U {
+function cross<T extends object, U extends object>(objOne: T, objTwo: U): T & U {
   let obj = {}
   let combine = obj as T & U
-  Object.keys(objOne).forEach((key) => {
+  Object.keys(objOne).forEach(key => {
     combine[key] = objOne[key]
   })
-  Object.keys(objTwo).forEach((key) => {
+  Object.keys(objTwo).forEach(key => {
     if (!combine.hasOwnProperty(key)) {
       combine[key] = objTwo[key]
     }
   })
-  return combine;
+  return combine
 }
 let combine = cross(button, link)
 let combine2 = cross(combine, href)
-console.log(combine);
-console.log(combine2);
-export { }
+console.log(combine)
+console.log(combine2)
+export {}

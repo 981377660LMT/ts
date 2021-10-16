@@ -21,7 +21,7 @@ interface ReactElement<
 > {
   type: T
   props: P
-  key: Key | null
+  key: React.Key | null
 }
 
 // 3.自定义hook
@@ -51,12 +51,17 @@ const Greet = ({ age = 21 }: GreetProps) => {
 
 // 6.获取未导出的 Type
 // 获取参数类型
-// import { Button } from 'library' // 但是未导出props type
-// type ButtonProps = React.ComponentProps<typeof Button> // 获取props
-// type AlertButtonProps = Omit<ButtonProps, 'onClick'> // 去除onClick
-// const AlertButton: React.FC<AlertButtonProps> = props => (
-//   <Button onClick={() => alert('hello')} {...props} />
-// )
+import { Button } from 'library' // 但是未导出props type
+type ButtonProps = React.ComponentProps<typeof Button> // 获取props
+type AlertButtonProps = Omit<ButtonProps, 'onClick'> // 去除onClick
+const AlertButton: React.FC<AlertButtonProps> = props => (
+  <Button onClick={() => alert('hello')} {...props} />
+)
+// 获取返回值类型
+function foo() {
+  return { baz: 1 }
+}
+type FooReturn = ReturnType<typeof foo> // { baz: number }
 
 // 7.增加相对详细的注释，使用时会更清晰，需要注意，注释需要使用 /**/ ， // 无法被 vscode 识别
 // Great
