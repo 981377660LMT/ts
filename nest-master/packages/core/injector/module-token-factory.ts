@@ -5,17 +5,24 @@ import stringify from 'fast-safe-stringify';
 import * as hash from 'object-hash';
 
 export class ModuleTokenFactory {
+  // 存放ModuleId 
   private readonly moduleIdsCache = new WeakMap<Type<unknown>, string>();
 
+  /**
+   * 
+   * @param metatype 
+   * @param dynamicModuleMetadata 
+   * @returns 
+   */
   public create(
     metatype: Type<unknown>,
     dynamicModuleMetadata?: Partial<DynamicModule> | undefined,
   ): string {
-    const moduleId = this.getModuleId(metatype);
+    const moduleId = this.getModuleId(metatype);  // 有则走缓存 没有就uuid
     const opaqueToken = {
       id: moduleId,
       module: this.getModuleName(metatype),
-      dynamic: this.getDynamicMetadataToken(dynamicModuleMetadata),
+      dynamic: this.getDynamicMetadataToken(dynamicModuleMetadata), // 模块stringify
     };
     return hash(opaqueToken, { ignoreUnknown: true });
   }

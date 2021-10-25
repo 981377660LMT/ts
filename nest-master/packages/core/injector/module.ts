@@ -146,6 +146,9 @@ export class Module {
     this._distance = value;
   }
 
+  /**
+   * @description Providers创建instanceWrapper，存储在Module的_providers数组中
+   */
   public addCoreProviders() {
     this.addModuleAsProvider();
     this.addModuleRef();

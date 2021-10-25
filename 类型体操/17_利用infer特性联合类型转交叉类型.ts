@@ -18,3 +18,5 @@ export {}
 //   ? U
 //   : never
 // type Eg2 = IntersectionToUnion<{ key1: string } & { key2: number }>
+
+// 逆变：函数参数少的可以赋给多的

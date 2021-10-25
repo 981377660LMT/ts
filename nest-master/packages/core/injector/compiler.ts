@@ -14,6 +14,7 @@ export class ModuleCompiler {
     metatype: Type<any> | DynamicModule | Promise<DynamicModule>,
   ): Promise<ModuleFactory> {
     const { type, dynamicMetadata } = this.extractMetadata(await metatype);
+    // moduleTokenFactory.create创建了一个token
     const token = this.moduleTokenFactory.create(type, dynamicMetadata);
     return { type, dynamicMetadata, token };
   }

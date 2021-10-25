@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { ExceptionHandler } from './exception-handler';
 
-const DEFAULT_TEARDOWN = () => process.exit(1);
+const DEFAULT_TEARDOWN = () => process.exit(1);  // 静默方式终止进程 1:未捕获的致命异常(Uncaught Fatal Exception) 
 
 export class ExceptionsZone {
   private static readonly exceptionHandler = new ExceptionHandler();

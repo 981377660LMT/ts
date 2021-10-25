@@ -19,6 +19,10 @@ export class MetadataScanner {
       .toArray();
   }
 
+  /**
+   * 
+   * @param prototype 获取类原型上的所有方法
+   */
   *getAllFilteredMethodNames(prototype: object): IterableIterator<string> {
     const isMethod = (prop: string) => {
       const descriptor = Object.getOwnPropertyDescriptor(prototype, prop);

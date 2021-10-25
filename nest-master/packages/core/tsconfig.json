@@ -1,7 +1,10 @@
 {
   "extends": "./../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@nestjs/*":["../*"]  //* 将导入重新映射到相对于“ baseUrl”查找位置的一系列条目。 */,
+    }
   },
   "include": ["*.ts", "**/*.ts"]
 }

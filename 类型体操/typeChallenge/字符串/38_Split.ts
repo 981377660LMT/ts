@@ -10,3 +10,4 @@ type Split<T extends string, S extends string> = T extends `${infer First}${S}${
 type Raw = Split<Test2, '.'>
 
 export {}
+// 这题只要会用 ${infer X}${S}${infer Y} 这种写法就很方便了，意思是将一个字符串做拆解：

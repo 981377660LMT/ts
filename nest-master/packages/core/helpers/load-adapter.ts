@@ -8,6 +8,14 @@ const MISSING_REQUIRED_DEPENDENCY = (
 
 const logger = new Logger('PackageLoader');
 
+/**
+ * 
+ * @param defaultPlatform   例如 @nestjs/platform-express
+ * @param transport 例如'HTTP'
+ * @param loaderFn 例如 () => require('@nestjs/platform-express'),
+ * @returns 
+ * 
+ */
 export function loadAdapter(
   defaultPlatform: string,
   transport: string,

@@ -65,7 +65,9 @@ export class DependenciesScanner {
 
   public async scan(module: Type<any>) {
     await this.registerCoreModule();
+    // scanForModules;这去扫描及保存模块（包括imports进来的模块）
     await this.scanForModules(module);
+    // 这个阶段主要做了两件事情，一个是将Module相关的依赖，如imports、providers、controllers、exports等，分别解析并添加，类似的方法在Module中定义：
     await this.scanModulesForDependencies();
     this.calculateModulesDistance();
 
@@ -73,6 +75,14 @@ export class DependenciesScanner {
     this.container.bindGlobalScope();
   }
 
+  /**
+   * 
+   * @param moduleDefinition 
+   * @param scope 
+   * @param ctxRegistry 
+   * @returns 
+   * @description scanForModules的工作就是对Module的imports字段做一个深度优先遍历，把所依赖的Module全部添加创建完成
+   */
   public async scanForModules(
     moduleDefinition:
       | ForwardReference
@@ -82,6 +92,7 @@ export class DependenciesScanner {
     scope: Type<unknown>[] = [],
     ctxRegistry: (ForwardReference | DynamicModule | Type<unknown>)[] = [],
   ): Promise<Module[]> {
+    // 首先调用了insertModule方法创建了一个moduleInstance
     const moduleInstance = await this.insertModule(moduleDefinition, scope);
     moduleDefinition =
       moduleDefinition instanceof Promise
@@ -119,6 +130,7 @@ export class DependenciesScanner {
       if (ctxRegistry.includes(innerModule)) {
         continue;
       }
+
       const moduleRefs = await this.scanForModules(
         innerModule,
         [].concat(scope, moduleDefinition),
@@ -136,6 +148,7 @@ export class DependenciesScanner {
     module: any,
     scope: Type<unknown>[],
   ): Promise<Module | undefined> {
+    // 然后进入容器对象的addModule方法里,模块编译器先编译模块。
     if (module && module.forwardRef) {
       return this.container.addModule(module.forwardRef(), scope);
     }
@@ -402,13 +415,19 @@ export class DependenciesScanner {
     return Reflect.getMetadata(metadataKey, metatype) || [];
   }
 
+  /**
+   * 首先调用InternalCoreModuleFactory.create创建Module，
+   * 通过scanForModules实例化Module，
+   * 最后再通过container.registerCorModule注册：
+   */
   public async registerCoreModule() {
     const moduleDefinition = InternalCoreModuleFactory.create(
       this.container,
       this,
       this.container.getModuleCompiler(),
       this.container.getHttpAdapterHostRef(),
-    );
+    );  // 返回 DynamicModule
+    // scanForModules的工作就是对Module的imports字段做一个深度优先遍历，把所依赖的Module全部添加创建完成
     const [instance] = await this.scanForModules(moduleDefinition);
     this.container.registerCoreModuleRef(instance);
   }

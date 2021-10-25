@@ -16,7 +16,7 @@
     "allowJs": false,
     "strict": true,
     "strictNullChecks": false,
-    "types": ["node"]
+    "types": ["node"]  /* 类型声明文件包含在编译中。*/
   },
   "exclude": ["../node_modules", "./**/*.spec.ts"]
 }

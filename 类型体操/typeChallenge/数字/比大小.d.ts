@@ -1,15 +1,24 @@
 // 比谁先挂
-type LargerThan<A extends number, B extends number, C extends number[] = []> = C['length'] extends A
+type LargerThan<
+  A extends number,
+  B extends number,
+  Count extends number[] = []
+> = Count['length'] extends A
   ? false
-  : C['length'] extends B
+  : Count['length'] extends B
   ? true
-  : LargerThan<A, B, [...C, 1]>
+  : LargerThan<A, B, [...Count, 1]>
 
-type SmallerThan<A extends number, B extends number, C extends any[] = []> = C['length'] extends B
+// 这里要求的是第一个数小，如果相等，返回自然是false
+type SmallerThan<
+  A extends number,
+  B extends number,
+  Count extends any[] = []
+> = Count['length'] extends B
   ? false
-  : C['length'] extends A
+  : Count['length'] extends A
   ? true
-  : SmallerThan<A, B, [...C, 1]>
+  : SmallerThan<A, B, [...Count, 1]>
 
 type IsEqual<T, R> = (<S>() => S extends T ? 1 : 0) extends <S>() => S extends R ? 1 : 0
   ? true

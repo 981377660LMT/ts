@@ -10,6 +10,9 @@ import { GlobalPrefixOptions } from '@nestjs/common/interfaces';
 import { InstanceWrapper } from './injector/instance-wrapper';
 import { ExcludeRouteMetadata } from './router/interfaces/exclude-route-metadata.interface';
 
+/**
+ * @description 一大堆 get 和 set
+ */
 export class ApplicationConfig {
   private globalPrefix = '';
   private globalPrefixOptions: GlobalPrefixOptions<ExcludeRouteMetadata> = {};

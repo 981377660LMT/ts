@@ -1,18 +1,18 @@
-type A = [string]
-type RA = Readonly<A>
+type Arr1 = [string]
+type RA = Readonly<Arr1>
 
-type B = string[]
-type RB = Readonly<B>
+type Arr2 = string[]
+type RB = Readonly<Arr2>
 
 type IsExtends<T, Y> = T extends Y ? true : false
 
-type AExtendsRA = IsExtends<A, RA> //true
+type AExtendsRA = IsExtends<Arr1, RA> //true
 
-type RAExtendsA = IsExtends<RA, A> //false
+type RAExtendsA = IsExtends<RA, Arr1> //false
 
-type BExtendsRA = IsExtends<B, RB> // true
+type BExtendsRA = IsExtends<Arr2, RB> // true
 
-type RBExtendsB = IsExtends<RB, B> // false
+type RBExtendsB = IsExtends<RB, Arr2> // false
 
 type C = {
   name: string

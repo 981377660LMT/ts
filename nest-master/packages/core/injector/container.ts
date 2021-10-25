@@ -15,6 +15,9 @@ import { Module } from './module';
 import { ModuleTokenFactory } from './module-token-factory';
 import { ModulesContainer } from './modules-container';
 
+/**
+ * @description 是一个用于实现依赖注入机制的Ioc容器
+ */
 export class NestContainer {
   private readonly globalModules = new Set<Module>();
   private readonly moduleTokenFactory = new ModuleTokenFactory();
@@ -53,13 +56,20 @@ export class NestContainer {
     return this.internalProvidersStorage.httpAdapterHost;
   }
 
+  /**
+   * 
+   * @param metatype 
+   * @param scope 
+   * @returns 
+   * addModule调用了moduleCompiler.compile获取到token
+   */
   public async addModule(
     metatype: Type<any> | DynamicModule | Promise<DynamicModule>,
     scope: Type<any>[],
   ): Promise<Module | undefined> {
     // In DependenciesScanner#scanForModules we already check for undefined or invalid modules
     // We still need to catch the edge-case of `forwardRef(() => undefined)`
-    if (!metatype) {
+    if (!metatype) {  // 非动态模块
       throw new UndefinedForwardRefException(scope);
     }
     const { type, dynamicMetadata, token } = await this.moduleCompiler.compile(
@@ -68,6 +78,7 @@ export class NestContainer {
     if (this.modules.has(token)) {
       return this.modules.get(token);
     }
+    // addModule缓存token，并创建了一个Module对象,主要执行了addCoreProviders方法
     const moduleRef = new Module(type, this);
     moduleRef.token = token;
     this.modules.set(token, moduleRef);

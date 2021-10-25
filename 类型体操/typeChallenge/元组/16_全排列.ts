@@ -2,8 +2,8 @@ type Perm = Permutation<'A' | 'B' | 'C'> // ['A', 'B', 'C'] | ['A', 'C', 'B'] | 
 
 // 1.[Remain] extends [never]表示回溯终点
 // 2.Remain extends Remain 表示对于每种可能遍历
-type Permutation<T, Remain = T> = [Remain] extends [never]
+type Permutation<Union, Remain = Union> = [Remain] extends [never]
   ? []
   : Remain extends Remain
-  ? [Remain, ...Permutation<Exclude<T, Remain>>]
+  ? [Remain, ...Permutation<Exclude<Union, Remain>>]
   : never

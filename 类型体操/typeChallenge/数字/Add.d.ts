@@ -16,4 +16,4 @@ type Add<A extends number, B extends number> = Helper<MakeArray<A>, MakeArray<B>
 type A = Add<1, 2> // 3
 type B = Add<0, 0> // 0
 
-export {}
+export { Add }

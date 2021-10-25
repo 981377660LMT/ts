@@ -23,6 +23,7 @@ import { NestApplication } from './nest-application';
 import { NestApplicationContext } from './nest-application-context';
 import { DependenciesScanner } from './scanner';
 
+
 /**
  * @publicApi
  */
@@ -62,6 +63,8 @@ export class NestFactoryStatic {
     httpAdapter: AbstractHttpAdapter,
     options?: NestApplicationOptions,
   ): Promise<T>;
+
+  // NestFactoryStatic没有构造器函数constructor,所以接着看create函数。
   public async create<T extends INestApplication = INestApplication>(
     module: any,
     serverOrOptions?: AbstractHttpAdapter | NestApplicationOptions,
@@ -69,14 +72,15 @@ export class NestFactoryStatic {
   ): Promise<T> {
     const [httpServer, appOptions] = this.isHttpServer(serverOrOptions)
       ? [serverOrOptions, options]
-      : [this.createHttpAdapter(), serverOrOptions];
+      : [this.createHttpAdapter(), serverOrOptions];  // 默认 express 适配器
 
-    const applicationConfig = new ApplicationConfig();
-    const container = new NestContainer(applicationConfig);
+    const applicationConfig = new ApplicationConfig();  // 过滤器 管道等设置
+    const container = new NestContainer(applicationConfig);  // IOC 容器 保存模块
     this.setAbortOnError(serverOrOptions, options);
     this.registerLoggerConfiguration(appOptions);
 
-    await this.initialize(module, container, applicationConfig, httpServer);
+    // 根模块 容器 容器设置 服务器   (IOC容器构建)
+    await this.initialize(module, container, applicationConfig, httpServer);  
 
     const instance = new NestApplication(
       container,
@@ -130,48 +134,51 @@ export class NestFactoryStatic {
     module: any,
     options?: NestApplicationContextOptions,
   ): Promise<INestApplicationContext> {
-    const container = new NestContainer();
     this.setAbortOnError(options);
     this.registerLoggerConfiguration(options);
-
+    
     await this.initialize(module, container);
-
+    
     const modules = container.getModules().values();
     const root = modules.next().value;
-
+    
     const context = this.createNestInstance<NestApplicationContext>(
       new NestApplicationContext(container, [], root),
-    );
-    return context.init();
-  }
-
-  private createNestInstance<T>(instance: T): T {
-    return this.createProxy(instance);
-  }
-
-  private async initialize(
-    module: any,
-    container: NestContainer,
-    config = new ApplicationConfig(),
-    httpServer: HttpServer = null,
-  ) {
-    const instanceLoader = new InstanceLoader(container);
-    const metadataScanner = new MetadataScanner();
-    const dependenciesScanner = new DependenciesScanner(
-      container,
-      metadataScanner,
-      config,
-    );
-    container.setHttpAdapter(httpServer);
-
-    const teardown = this.abortOnError === false ? rethrow : undefined;
-    await httpServer?.init();
+      );
+      return context.init();
+    }
+    
+    private createNestInstance<T>(instance: T): T {
+      return this.createProxy(instance);
+    }
+    
+    private async initialize(
+      module: any,
+      container: NestContainer,
+      config = new ApplicationConfig(),
+      httpServer: HttpServer = null,
+      ) {
+        // 生成实例加载器和依赖扫描器。
+        const instanceLoader = new InstanceLoader(container);
+        const metadataScanner = new MetadataScanner();
+        const dependenciesScanner = new DependenciesScanner(
+          container,
+          metadataScanner,
+          config,
+          );
+          // 接着容器与httpServer绑定。
+          container.setHttpAdapter(httpServer); 
+          
+          const teardown = this.abortOnError === false ? rethrow : undefined;
+          await httpServer?.init();
+          const container = new NestContainer();
     try {
       this.logger.log(MESSAGES.APPLICATION_START);
 
+      // 接着使用内部异常处理器（为了统一异常处理）异步去运行最后的步骤。
       await ExceptionsZone.asyncRun(
         async () => {
-          await dependenciesScanner.scan(module);
+          await dependenciesScanner.scan(module);  
           await instanceLoader.createInstancesOfDependencies();
           dependenciesScanner.applyApplicationProviders();
         },
