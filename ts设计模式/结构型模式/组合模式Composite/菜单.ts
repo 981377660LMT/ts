@@ -5,6 +5,7 @@
 
 // 菜单可以包括子菜单，点击菜单项时有子菜单则显示子菜单，没有时触发点击事件。
 // 扩展内建类
+
 abstract class AbstractMenu extends Array<AbstractMenu> {
   abstract name: string
 

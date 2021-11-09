@@ -21,4 +21,5 @@
 // const demo = new Demo()
 // //@ts-ignore
 // demo.sayName()
-const a = 123
+const a: Object = 123
+export {}

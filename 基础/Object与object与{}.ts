@@ -41,3 +41,20 @@ declare var Object: ObjectConstructor
 // const fff1: Object = null
 // const fff2: {} = undefined
 // const fff3: object = 1
+const fff4: Number = 1
+const fff5: number = 2
+type True1 = number extends Number ? 1 : 2
+type True2 = Number extends Object ? 1 : 2
+type False = Number extends Function ? 1 : 2 // 只是骗编辑器的
+console.log(typeof Number)
+
+const a: BigInt = 1n
+
+type Keys<T, K = keyof T> = K extends any ? K : never
+type Key1 = Keys<number>
+type Key2 = Keys<Number>
+
+export {}
+
+// 大小写区别：大写是构造函数类型，小写是实力类型
+// null与undefined没有大写，印证了没有构造函数
