@@ -7,4 +7,4 @@ type IsAny2<T> = 0 extends 1 & T ? true : false
 type Test1 = IsAny<string>
 type Test2 = IsAny2<any>
 
-export {}
+export { IsAny }

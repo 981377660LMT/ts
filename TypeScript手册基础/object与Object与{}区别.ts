@@ -22,3 +22,4 @@ interface ObjectConstructor {
 // Object 接口定义了 Object.prototype 原型对象上的属性；
 // ObjectConstructor 接口定义了 Object 类的属性。
 // {} 类型：它描述了一个没有成员的对象。
+export {}
