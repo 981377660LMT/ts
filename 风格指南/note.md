@@ -111,7 +111,7 @@ class A {
 29. 任何时候都应当使用 ES6 的导入语法。
 30. 不要使用默认导出，这样能保证所有的导入语句都遵循统一的范式：
 31. 不允许使用 export let
-32. 如果确实需要允许外部代码对可变值进行访问，应当提供一个显式 getter。
+32. `如果确实需要允许外部代码对可变值进行访问，应当提供一个显式 getter。`
 
 ```JS
 // 不要这样做！
@@ -133,7 +133,7 @@ window.setTimeout(() => {
 export function getFoo() { return foo; };
 ```
 
-33. 不要为了实现命名空间创建含有静态方法或属性的容器类。应当将这些方法和属性设为单独导出的常数和函数。
+33. 不要为了实现命名空间创建含有静态方法或属性的容器类。应当将这些方法和属性设为`单独导出的常数和函数`。
 34. 在 ES6 和 TypeScript 中，导入语句共有四种变体：
     模块 import `*` as foo from '...'; TypeScript 导入方式
     解构 import {SomeThing} from '...'; TypeScript 导入方式
@@ -156,6 +156,7 @@ import '@polymer/paper-button';
 35. 选择模块导入还是解构导入
     在从一个大型 API 中导入多个不同的符号时，模块导入语句尤其有用。 (path.resolve/path.join)
     解构导入语句则为每一个被导入的符号提供一个局部的名称，这样在使用被导入的符号时，代码可以更简洁。`对那些十分常用的符号`，例如 Jasmine 的 describe 和 it 来说，这一点尤其有用。(React 的 hooks)
+    常用的 api 使用结构导入；如果 api 名称容易混淆
 
 ```JS
 // 不要这样做！无意义地使用命名空间中的名称使得导入语句过于冗长。
@@ -180,7 +181,7 @@ it('bar', () => {
 ...
 ```
 
-36. 不要使用 import type ... from 或者 export type ... from 。
+36. `不要使用 import type ... from 或者 export type ... from 。`
 37. 重命名导入
     在代码中，应当通过使用模块导入或重命名导出解决命名冲突
     被导入符号的名称不能清晰地描述其自身，需要通过重命名提高代码的可读性，如`将 RxJS 的 from 函数重命名为 observableFrom 。`

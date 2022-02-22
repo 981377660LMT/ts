@@ -1,3 +1,3 @@
-import { isPrime } from 'umd模块'
+import { isPrime } from 'Mathlib'
 isPrime(2)
-mathLib.isPrime(2) // ERROR: can't use the global definition from inside a module
+MathLib.isPrime(2) // ERROR: can't use the global definition from inside a module

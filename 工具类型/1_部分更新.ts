@@ -19,3 +19,4 @@ const todo2 = updateTodo(todo1, {
 console.log(todo2)
 // Required<Type>
 // 构建一个类型，使类型 Type 的所有属性为 required 。 与此相反的是Partial。
+export {}
