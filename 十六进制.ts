@@ -1,3 +1,5 @@
+import React from 'react'
+
 console.log(
   Buffer.from([0x4b, 0x1b, 0x83, 0x92, 0x9d, 0x0c])
     .reverse()
