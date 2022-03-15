@@ -9,4 +9,5 @@ console.log(
     .map((value: string, index: number) => (index % 2 === 1 ? value + ' ' : value))
     .join('')
 )
+
 export {}

@@ -3,6 +3,8 @@
 function toHex(this: Number) {
   return this.toString(16)
 }
+
+// ThisParameterType 作用是提取函数的this
 function numberToString(n: ThisParameterType<typeof toHex>) {
   return toHex.apply(n)
 }
@@ -16,6 +18,7 @@ console.log(fiveToHex())
 // 怎么使用ThisType???
 type ObjectDescriptor<D, M> = {
   data?: D
+  // 声明This指向谁 参考Vue里的使用
   methods?: M & ThisType<D & M> // Type of 'this' in methods is D & M
 }
 

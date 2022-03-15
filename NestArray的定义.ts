@@ -10,6 +10,7 @@ const flatten = (nums: NestedArray<number>): number[] => {
   const res: number[] = []
   for (const num of nums) {
     if (typeof num === 'number') res.push(num)
+    // dfs  也可bfs 存深度即可
     else res.push(...flatten(num))
   }
   return res

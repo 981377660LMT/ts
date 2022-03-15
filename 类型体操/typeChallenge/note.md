@@ -4,7 +4,7 @@
 
 ```TS
 1.
-将联合类型合并成一个对象
+将联合类型展开合并成一个对象
 type Merge<T> = { [K in keyof T]: T[K] }
 
 2.
@@ -24,17 +24,15 @@ type DoSomethingWithKeys<T extends object,U>={
 4.
 几种Equal
 type EqualType<T, R> = [T] extends [R] ? ([R] extends [T] ? true : false) : false
-type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
-  ? 1
-  : 2
-  ? A
-  : B
+type IsEqual<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2)
+  ? true
+  : false
 
 5.
 利用函数泛型的推断
 函数参数作为泛型来约束函数参数/提取函数参数的键的类型/约束函数的This
 interface Chainable<Options = {}> {
-  option: <K extends string, V>(key: K, val: V) => Chainable<Options & { [S in K]: V }>
+  option: <K extends string, V>(key: K, val: V) => Chainable<Options & { [S in K]: V }>  // & { [S in K]: V } 很巧妙
   get: () => Options
 }
 
@@ -56,7 +54,7 @@ type Perm = Permutation<'A' | 'B' | 'C'> // ['A', 'B', 'C'] | ['A', 'C', 'B'] | 
 
 // 1.[Remain] extends [never]表示回溯终点
 // 2.Remain extends Remain 表示遍历联合类型
-type Permutation<T, Remain = T> = [Remain] extends [never]
+type Permutation<T, Remain = T> = [Remain] extends [never] // 空数组就是never[]
   ? []
   : Remain extends Remain
   ? [Remain, ...Permutation<Exclude<T, Remain>>]
@@ -64,10 +62,10 @@ type Permutation<T, Remain = T> = [Remain] extends [never]
 
 9.
 字符串常用方法:
-1.  S extends `${infer L}${infer R}` 每次infer先只取第一个 达到遍历字符串的效果
+1.  S extends `${infer L}${infer R}` 每次infer`先只取第一个` 达到遍历字符串的效果
 2.  S extends `${infer L}${From}${infer R}` 匹配泛型递归
 元组常用方法:
-1.  T extends [infer L, ...infer R]  达到遍历元组的效果
+3.  T extends [infer L, ...infer R]  达到遍历元组的效果
 
 
 10.
@@ -171,7 +169,7 @@ type Foo<Target extends any, Res extends any[]=[]> = ...
 19. any 是最大的联合类型 never 是最小的联合类型
     类型约束时需要 [any] extends [A]
 
-20. 仅允许对数组和元组文本类型使用 "readonly" 类型修饰符。
+20. 仅允许对数组和`元组`文本类型使用 "readonly" 类型修饰符。
 
 ```JS
 // 错误

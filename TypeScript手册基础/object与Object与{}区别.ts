@@ -14,7 +14,7 @@ interface ObjectConstructor {
 }
 // 例如，Object.create() 和Object.setPrototypeOf() 方法，现在需要为它们的原型参数指定 object | null 类型：
 // Object 接口定义了 Object.prototype 原型对象上的属性；
-// ObjectConstructor 接口定义了 Object 类的属性。
+// ObjectConstructor 接口定义了 Object 类的静态属性。
 
 // 总结：
 // object 类型是：TypeScript 2.2 引入的新类型，它用于表示非原始类型。

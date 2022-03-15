@@ -5,19 +5,19 @@ interface ClockInterface {
   setTime(d: Date): void
 }
 
-interface ClockConstructor<T> {
-  new (hour: number, minute: number): T
+interface ClockConstructor {
+  new (hour: number, minute: number): ClockInterface
 }
 
 class Clock implements ClockInterface {
   currentTime: Date = new Date()
   // 接口描述了类的公共部分，而不是公共和私有两部分。 它不会帮你检查类是否具有某些私有成员。
   // 并且只对其实例部分进行类型检查。
-  // constructor 存在于类的静态部分，所以不在检查的范围内。
-  private setTime(d: Date) {
+  setTime(d: Date) {
     this.currentTime = d
   }
 
+  // constructor 存在于类的静态部分，所以不在检查的范围内。
   constructor(h: number, m: number) {}
 }
 
@@ -27,6 +27,7 @@ function create<T>(c: { new (): T }): T {
   return new c()
 }
 //////////////////////////////////////
+// 竟然就可以像python那样解构
 let pythonic: [boolean, ...string[], number]
 pythonic = [true, 'a', 'b', 1]
 
@@ -100,9 +101,9 @@ type T33 = Filter<string | number | (() => void), Function> // () => void
 type NonNullable<T> = Diff<T, null | undefined> // Remove null and undefined from T
 ///////////////////////////////////////////////
 switch (Math.random()) {
-  case 0: // 错误: switch 中出现了贯穿的 case.
+  case 0:
     console.log('even')
-
+  // 错误: switch 中出现了贯穿的 case.
   case 1:
     console.log('odd')
     break

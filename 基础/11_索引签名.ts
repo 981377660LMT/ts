@@ -66,3 +66,5 @@ let color: Colors // color 的类型是 'red' | 'blue'
 color = 'red' // ok
 color = 'blue' // ok
 // color = 'anythingElse'; // Error
+
+export default 1

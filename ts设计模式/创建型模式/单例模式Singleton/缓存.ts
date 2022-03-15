@@ -4,7 +4,7 @@
 
 // 设置一个全局只读的Instance并且把构造函数设为private，这样就确保了单例的特点。
 class Cache {
-  static readonly Instance: Cache = new Cache()
+  static readonly instance: Cache = new Cache()
   private items: { [key: string]: string } = {}
   private constructor() {}
 
@@ -20,7 +20,7 @@ class Cache {
   }
 }
 
-Cache.Instance.set('name', 'brook')
-Cache.Instance.get('name')
+Cache.instance.set('name', 'brook')
+Cache.instance.get('name')
 
 export {}

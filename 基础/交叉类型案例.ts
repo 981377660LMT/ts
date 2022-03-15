@@ -3,6 +3,7 @@ interface Level {
   contents: string
 }
 
+// 可以DIY
 type LevelMore<T> = T & Level
 
 type TaskObj = LevelMore<{ secTask: LevelMore<{ thirdTask: LevelMore<{ dot: boolean }> }> }>

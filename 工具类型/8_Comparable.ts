@@ -8,4 +8,5 @@ interface IPerson {
 const key: Comparable<IPerson> = (a, b) => a.age - b.age
 
 export {}
+
 const createNamedTuple = require('named-tuple')

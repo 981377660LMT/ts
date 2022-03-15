@@ -399,10 +399,3 @@ disturl = https://npm.taobao.org/dist
 104.16.92.83 www.npmjs.com
 104.16.18.35 registry.npmjs.com
 ```
-
-## 四、Vue.js 2.0 项目升级 3.0
-
-1. 模块升级
-2. element-ui → element-plus
-3. Breaking change
-4. 逐渐使用新特性

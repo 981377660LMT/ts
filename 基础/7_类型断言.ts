@@ -20,5 +20,5 @@ function handler1(event: Event) {
 
 // 双重断言
 function handler2(event: Event) {
-  const element = (event as unknown) as HTMLElement // Error: 'Event' 和 'HTMLElement' 中的任何一个都不能赋值给另外一个
+  const element = event as unknown as HTMLElement // Error: 'Event' 和 'HTMLElement' 中的任何一个都不能赋值给另外一个
 }

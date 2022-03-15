@@ -25,3 +25,5 @@ interface CallMeWithNewToGetString {
 // 使用
 declare const Foo: CallMeWithNewToGetString
 const barrr = new Foo() // bar 被推断为 string 类型
+
+export {}

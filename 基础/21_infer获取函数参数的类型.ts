@@ -28,6 +28,7 @@ type MyConstructorParameters<T extends new (...args: any[]) => any> = T extends 
 class TestClass {
   constructor(public name: string, public age: number) {}
 }
+
 type Params = MyConstructorParameters<typeof TestClass>
 //////////////////////////////
 // 获取实例类型
@@ -43,7 +44,7 @@ type Instance = MyInstanceType<typeof TestClass> // TestClass
 type ElementOf<T> = T extends Array<infer U> ? U : never
 type Union = ElementOf<[string, number]> // string | number
 /////////////////////////////////////
-// 联合类型转交叉类型
+// 联合类型转交叉类型 转到函数参数上去
 // type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void
 //   ? I
 //   : never

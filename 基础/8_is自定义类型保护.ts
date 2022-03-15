@@ -21,3 +21,5 @@ function doStuff(arg: Foo | Bar) {
     console.log(arg.bar) // ok
   }
 }
+
+export {}

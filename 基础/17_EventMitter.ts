@@ -7,10 +7,11 @@ export interface Disposable {
 }
 
 export class TypedEvent<T> {
+  // 也可以按类型存为邻接表，且限制邻接表的长度
   private listeners: Listener<T>[] = []
   private listenersOncer: Listener<T>[] = []
 
-  public on = (listener: Listener<T>): Disposable => {
+  on(listener: Listener<T>): Disposable {
     this.listeners.push(listener)
 
     return {
@@ -18,24 +19,19 @@ export class TypedEvent<T> {
     }
   }
 
-  public once = (listener: Listener<T>): void => {
+  once(listener: Listener<T>): void {
     this.listenersOncer.push(listener)
   }
 
-  public off = (listener: Listener<T>) => {
-    const callbackIndex = this.listeners.indexOf(listener)
-    if (callbackIndex > -1) this.listeners.splice(callbackIndex, 1)
+  off(listener: Listener<T>) {
+    this.listeners = this.listeners.filter(l => l !== listener)
   }
 
-  public emit = (event: T) => {
+  emit(event: T) {
     this.listeners.forEach(listener => listener(event))
 
     this.listenersOncer.forEach(listener => listener(event))
 
     this.listenersOncer = []
-  }
-
-  public pipe = (te: TypedEvent<T>): Disposable => {
-    return this.on(e => te.emit(e))
   }
 }

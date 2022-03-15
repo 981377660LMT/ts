@@ -1,4 +1,5 @@
 type Primitive = string | number | bigint | boolean | symbol | null | undefined
+// sun sb nb
 
 /**
  * @desc 用于创建获取指定类型工具的类型工厂

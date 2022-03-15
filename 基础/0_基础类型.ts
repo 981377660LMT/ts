@@ -10,7 +10,7 @@ interface Collections {
 // 接口也可以描述函数类型。
 // 函数类型 (变量):返回值
 interface SearchFunc {
-  (source: string, subString: string): boolean;
+  (source: string, subString: string): boolean
 }
 
 class B implements Collections {
@@ -20,7 +20,7 @@ class B implements Collections {
     throw Error()
   }
 
-  hi<void>() {}
+  hi() {}
 }
 
 // 相同类型元素组成成为数组，不同类型元素组成了元组（Tuple）。

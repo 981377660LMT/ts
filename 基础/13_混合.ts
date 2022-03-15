@@ -28,3 +28,4 @@ class User {
 }
 
 const activatableUser = new (Activatable(User))()
+export {}

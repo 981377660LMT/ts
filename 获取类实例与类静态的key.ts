@@ -3,6 +3,7 @@ type StaticPropKeys<Contructor extends abstract new (...args: any[]) => any> = E
   keyof Contructor,
   'prototype'
 >
+
 // type Foo = StaticPropKeys<Order> //  类型“Order”提供的内容与签名“new (...args: any[]): any”不匹配。ts(2344
 type Foo = StaticPropKeys<typeof Order>
 

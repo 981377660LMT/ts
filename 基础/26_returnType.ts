@@ -9,5 +9,5 @@ type T0 = ReturnType<() => string> // string
 type T1 = ReturnType<(s: string) => void> // void
 type T2 = ReturnType<<T>() => T> // unknown
 // 借助 infer 实现元组转联合类型
-type Flatten<T> = T extends Array<infer U> ? U : never
-type T3 = Flatten<[string, number]>
+type Flatten<T> = T extends Array<infer U> ? Flatten<U> : T
+type T3 = Flatten<[string, [number]]>

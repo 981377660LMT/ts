@@ -18,6 +18,7 @@ const entry: NestDict = {
 //   'a.d.xx': 'adxx',
 //   'a.e': 'ae',
 // }
+// 多叉树，dfs记录路径即可
 
 interface NestDict extends Record<string, NestDict | string> {}
 

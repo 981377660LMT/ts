@@ -11,9 +11,7 @@ declare let process: Process
 // ///<reference path="TestA.ts" />
 
 // class TestB{
-
 //  public static testBStr:string = TestA.arr.join("");
-
 // }
 
 // 作者：合肥黑

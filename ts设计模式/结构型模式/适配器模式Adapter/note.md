@@ -77,8 +77,9 @@ class ExpressAdapter extends AbstractHttpAdapter
 class IoAdapter extends AbstractWsAdapter
 class WsAdapter extends AbstractWsAdapter
 
-FastifyAdapter内部用fastify的api 实现 HttpServer
-ExpressAdapter内部用express的api 实现 HttpServer
-IoAdapter 内部用socket.io的api 实现 HttpServer
-WsAdapter 内部用websockets的api 实现 HttpServer
 ```
+
+FastifyAdapter 内部用 fastify 的 api 实现 HttpServer
+ExpressAdapter 内部用 express 的 api 实现 HttpServer
+IoAdapter 内部用 socket.io 的 api 实现 HttpServer
+WsAdapter 内部用 websockets 的 api 实现 HttpServer

@@ -12,4 +12,4 @@ type Foo = {
   c: boolean
 }
 
-type asB = ConstructorParameters<Foo, 'c' | 'd'>
+type asB = MyOmit<Foo, 'c'>
