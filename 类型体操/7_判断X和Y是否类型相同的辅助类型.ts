@@ -4,11 +4,7 @@
  * @summary IfEquals的基本骨架是type IfEquals<> = (参数1) extends (参数2) ? A : B
  * 原理： Ts编译器会认为如果两个类型（比如这里的X和Y）仅被用于约束两个相同的泛型函数，则是相同的
  */
-type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
-  ? 1
-  : 2
-  ? A
-  : B
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2 ? A : B
 
 type Foo = IfEquals<string, string>
 
@@ -35,3 +31,9 @@ type T3 = { key1?: string }
 type A1 = IfEquals<T1, T2, true, false>
 // A2 = false
 type A2 = IfEquals<T1, T3, true, false>
+
+// 只包含可选属性的对象
+export type OnlyContainsOptionalProps<T extends object> = IfEquals<T, Partial<T>>
+
+// 只包含必选属性的对象
+export type OnlyContainsRequiredProps<T extends object> = IfEquals<T, Required<T>>
