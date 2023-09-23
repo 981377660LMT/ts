@@ -13,3 +13,4 @@ export {}
 // 最后把结果合并返回。这叫做分布式条件类型。
 // 此外，条件类型遇到 never 会直接返回 never，
 // 遇到 any 会返回 trueType 和 falseType 的联合类型。
+type A = 'foo' // global scope

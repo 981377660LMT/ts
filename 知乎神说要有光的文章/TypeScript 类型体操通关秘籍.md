@@ -19,6 +19,8 @@ https://juejin.cn/book/7047524421182947366/section/7048460240966123559?utm_sourc
 - 循环：递归复用做循环
 - 计数：数组长度做计数
 - 简化：联合分散可简化
+  联合类型遵从分配律
+  type T<{ a: string } | { b: number }> 实际上等价于 type T<{ a: string }> | type T<{ b: number }>。
 
 4. ParseQueryString
    a=1&b=2&c=3&d=4，这样的字符串明显是 query param 个数不确定的，遇到数量不确定的问题，条件反射的就要想到递归：

@@ -43,6 +43,14 @@ function parseQueryString<S extends string>(s: S): ParseQueryString<S> {
 export { parseQueryString }
 export type { ParseQueryString }
 
+type Items<S extends string> = Split<S, '&'>
+type ItemsToRecord<Items extends string[]> = { [K in Items[number]]: string }
+type test = Items<'a=1&b=2&c=3&a=4'>
+
+type Map<Arr extends string[]> = ParseEntry<Arr[number]>
+type UnionToArray<U> = U extends unknown ? U[] : never
+type UnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) extends (k: infer I) => void ? I : never
+
 export type Split<S extends string, Separator extends string> = S extends `${infer First}${Separator}${infer Rest}`
   ? [First, ...Split<Rest, Separator>]
   : [S]
@@ -71,7 +79,8 @@ export type ParseEntry<S extends string> = S extends `${infer Key}=${infer Value
 export type MergeRecord<Record1 extends Record<string, unknown>, Record2 extends Record<string, unknown>> = {
   [K in keyof Record1 | keyof Record2]: K extends keyof Record1
     ? K extends keyof Record2
-      ? [...(Record1[K] extends unknown[] ? Record1[K] : [Record1[K]]), ...(Record2[K] extends unknown[] ? Record2[K] : [Record2[K]])]
+      ? // merge 逻辑
+        [...(Record1[K] extends unknown[] ? Record1[K] : [Record1[K]]), ...(Record2[K] extends unknown[] ? Record2[K] : [Record2[K]])]
       : Record1[K] extends unknown[]
       ? Record1[K]
       : [Record1[K]]
@@ -90,7 +99,7 @@ export type MergeRecordRecursively<Records extends Record<string, unknown>[]> = 
     : never
   : {}
 
-export type Flat<T extends unknown[], Depth extends number = 2e15> = T extends [infer First, ...infer Rest]
+export type Flat<T extends unknown[], Depth extends number = 999> = T extends [infer First, ...infer Rest]
   ? First extends unknown[]
     ? Depth extends 0
       ? T
