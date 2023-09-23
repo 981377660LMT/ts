@@ -43,19 +43,55 @@ function parseQueryString<S extends string>(s: S): ParseQueryString<S> {
 export { parseQueryString }
 export type { ParseQueryString }
 
-type Items<S extends string> = Split<S, '&'>
-type ItemsToRecord<Items extends string[]> = { [K in Items[number]]: string }
-type test = Items<'a=1&b=2&c=3&a=4'>
+// 分步写会更好理解
+type Tmp1<S extends string> = Split<S, '&'>
+type Tmp2<S extends string> = MapEntry<Tmp1<S>>
+type Tmp3<S extends string> = MergeRecordRecursively<Tmp2<S>>
+type Tmp4<S extends string> = UniqueRecord<Tmp3<S>>
+type ParseQueryString<S extends string> = NormalizeRecord<Tmp4<S>>
+// {
+//   a: ["1", "4"];
+//   b: "2";
+//   c: "3";
+// }
+type testParseQueryString = ParseQueryString<'a=1&b=2&c=3&a=4&c=3'>
+
+type MapEntry<Arr extends string[], Res extends Record<string, unknown>[] = []> = Arr extends [
+  infer First,
+  ...infer Rest
+]
+  ? First extends string
+    ? Rest extends string[]
+      ? MapEntry<Rest, [...Res, ParseEntry<First>]>
+      : never
+    : never
+  : Res
+
+type UniqueRecord<T extends object> = {
+  [K in keyof T]: T[K] extends unknown[] ? UniqueArray<T[K]> : T[K]
+}
+
+type NormalizeRecord<T extends object> = {
+  [K in keyof T]: T[K] extends unknown[] ? (T[K]['length'] extends 1 ? T[K][0] : T[K]) : T[K]
+}
 
 type Map<Arr extends string[]> = ParseEntry<Arr[number]>
 type UnionToArray<U> = U extends unknown ? U[] : never
-type UnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) extends (k: infer I) => void ? I : never
+type UnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) extends (
+  k: infer I
+) => void
+  ? I
+  : never
 
-export type Split<S extends string, Separator extends string> = S extends `${infer First}${Separator}${infer Rest}`
-  ? [First, ...Split<Rest, Separator>]
-  : [S]
+export type Split<
+  S extends string,
+  Separator extends string
+> = S extends `${infer First}${Separator}${infer Rest}` ? [First, ...Split<Rest, Separator>] : [S]
 
-export type Join<Arr extends unknown[], Separator extends string> = Arr extends [infer First, ...infer Rest]
+export type Join<Arr extends unknown[], Separator extends string> = Arr extends [
+  infer First,
+  ...infer Rest
+]
   ? `${First & string}${Separator}${Join<Rest, Separator>}`
   : ''
 
@@ -66,7 +102,9 @@ export type Join<Arr extends unknown[], Separator extends string> = Arr extends 
  * type TestEntry = Entry<'a=1'>  // {a:'1'}
  * ```
  */
-export type ParseEntry<S extends string> = S extends `${infer Key}=${infer Value}` ? { [K in Key]: Value } : never
+export type ParseEntry<S extends string> = S extends `${infer Key}=${infer Value}`
+  ? { [K in Key]: Value }
+  : never
 
 /**
  * 合并两个对象, 如果有相同的key, 则value为包含两个对象value的数组.
@@ -76,11 +114,17 @@ export type ParseEntry<S extends string> = S extends `${infer Key}=${infer Value
  * type TestMerge2 = MergeRecord<{a:[1],b:2,c:3},{b:[3],c:4}>  // {a:[1],b:[2,3],c:[3,4]}
  * ```
  */
-export type MergeRecord<Record1 extends Record<string, unknown>, Record2 extends Record<string, unknown>> = {
+export type MergeRecord<
+  Record1 extends Record<string, unknown>,
+  Record2 extends Record<string, unknown>
+> = {
   [K in keyof Record1 | keyof Record2]: K extends keyof Record1
     ? K extends keyof Record2
       ? // merge 逻辑
-        [...(Record1[K] extends unknown[] ? Record1[K] : [Record1[K]]), ...(Record2[K] extends unknown[] ? Record2[K] : [Record2[K]])]
+        [
+          ...(Record1[K] extends unknown[] ? Record1[K] : [Record1[K]]),
+          ...(Record2[K] extends unknown[] ? Record2[K] : [Record2[K]])
+        ]
       : Record1[K] extends unknown[]
       ? Record1[K]
       : [Record1[K]]
@@ -91,7 +135,10 @@ export type MergeRecord<Record1 extends Record<string, unknown>, Record2 extends
     : never
 }
 
-export type MergeRecordRecursively<Records extends Record<string, unknown>[]> = Records extends [infer First, ...infer Rest]
+export type MergeRecordRecursively<Records extends Record<string, unknown>[]> = Records extends [
+  infer First,
+  ...infer Rest
+]
   ? First extends Record<string, unknown>
     ? Rest extends Record<string, unknown>[]
       ? MergeRecord<First, MergeRecordRecursively<Rest>>
@@ -99,7 +146,10 @@ export type MergeRecordRecursively<Records extends Record<string, unknown>[]> = 
     : never
   : {}
 
-export type Flat<T extends unknown[], Depth extends number = 999> = T extends [infer First, ...infer Rest]
+export type Flat<T extends unknown[], Depth extends number = 999> = T extends [
+  infer First,
+  ...infer Rest
+]
   ? First extends unknown[]
     ? Depth extends 0
       ? T
@@ -113,22 +163,36 @@ export type Includes<Arr extends unknown[], Item> = Arr extends [infer First, ..
     : Includes<Rest, Item>
   : false
 
-export type BuildTuple<Length extends number, Result extends unknown[] = []> = Result['length'] extends Length
-  ? Result
-  : BuildTuple<Length, [...Result, unknown]>
-export type Add<Num1 extends number, Num2 extends number> = [...BuildTuple<Num1>, ...BuildTuple<Num2>]['length']
-export type Subtract<A extends number, B extends number> = BuildTuple<A> extends [...infer U, ...BuildTuple<B>] ? U['length'] : never
+export type BuildTuple<
+  Length extends number,
+  Result extends unknown[] = []
+> = Result['length'] extends Length ? Result : BuildTuple<Length, [...Result, unknown]>
+export type Add<Num1 extends number, Num2 extends number> = [
+  ...BuildTuple<Num1>,
+  ...BuildTuple<Num2>
+]['length']
+export type Subtract<A extends number, B extends number> = BuildTuple<A> extends [
+  ...infer U,
+  ...BuildTuple<B>
+]
+  ? U['length']
+  : never
 
-export type IndexOf<Arr extends unknown[], SearchElement extends unknown, FromIndex extends number = 0> = Arr extends [infer First, ...infer Rest]
+export type IndexOf<
+  Arr extends unknown[],
+  SearchElement extends unknown,
+  FromIndex extends number = 0
+> = Arr extends [infer First, ...infer Rest]
   ? IsEqual<First, SearchElement> extends true
     ? FromIndex
     : IndexOf<Rest, SearchElement, FromIndex extends 0 ? 1 : Add<FromIndex, 1>>
   : -1
 
-export type LastIndexOf<Arr extends unknown[], SearchElement extends unknown, FromIndex extends number = Subtract<Arr['length'], 1>> = Arr extends [
-  ...infer Rest,
-  infer Last
-]
+export type LastIndexOf<
+  Arr extends unknown[],
+  SearchElement extends unknown,
+  FromIndex extends number = Subtract<Arr['length'], 1>
+> = Arr extends [...infer Rest, infer Last]
   ? IsEqual<Last, SearchElement> extends true
     ? FromIndex
     : LastIndexOf<Rest, SearchElement, Subtract<FromIndex, 1>>
@@ -150,3 +214,4 @@ type TestIndexOf = IndexOf<[1, 1, 3, 4, 5, 6, 7, 8, 9, 0], 1>
 type TestLastIndexOf = LastIndexOf<[1, 1, 1, 3, 4, 5, 6, 7, 8, 9, 0], 1>
 type TestJoin = Join<['a', 'b', 'c', 'd'], '&'>
 type TestMergeRecord = MergeRecord<{ a: []; b: 2; c: 3 }, { b: [3]; c: 4 }>
+type TestMergeRecordRecursively = MergeRecordRecursively<[{ a: []; b: 2; c: 3 }, { b: [3]; c: 4 }]>
