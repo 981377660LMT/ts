@@ -12,18 +12,16 @@ type ToObj<T> = {
 type PartialByKeys<O extends object, P extends PropertyKey = any> = ToObj<
   {
     [K in keyof O as K extends P ? K : never]?: O[K]
-  } &
-    {
-      [K in Exclude<keyof O, P>]: O[K]
-    }
+  } & {
+    [K in Exclude<keyof O, P>]: O[K]
+  }
 >
 
 type RequiredByKeys<O extends object, P extends PropertyKey = any> = ToObj<
   {
     [K in keyof O as K extends P ? K : never]-?: O[K]
-  } &
-    {
-      [K in Exclude<keyof O, P>]: O[K]
-    }
+  } & {
+    [K in Exclude<keyof O, P>]: O[K]
+  }
 >
 export {}

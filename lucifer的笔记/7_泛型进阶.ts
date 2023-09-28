@@ -12,11 +12,7 @@ type foo = cutTail<typeof kkk>
 
 // 泛型支持递归调用和声明
 // 递归地将类型中所有的属性都变成可选(dfs)
-type DeepPartial<T> = T extends Function
-  ? T
-  : T extends object
-  ? { [P in keyof T]?: DeepPartial<T[P]> }
-  : T
+type DeepPartial<T> = T extends Function ? T : T extends object ? { [P in keyof T]?: DeepPartial<T[P]> } : T
 
 interface DeepPartialDemo {
   a: { b: { c: { d: string } } }
