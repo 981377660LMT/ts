@@ -42,6 +42,9 @@ interface Chainable<Options = {}> {
 6.
 空对象的表示
 Record<PropertyKey, never>
+Record<unknown, never>
+Record<any, never>
+
 
 7.
 使用一个数组泛型辅助，使用数组长度计数
