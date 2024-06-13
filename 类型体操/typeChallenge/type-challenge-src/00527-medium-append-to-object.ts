@@ -49,3 +49,20 @@ type AppendToObject<T, U extends PropertyKey, V> = Mapping<T & Record<U, V>>
 type Mapping<T> = {
   [K in keyof T]: T[K]
 }
+
+interface ConfigSource {
+  filter: string
+  sorts: number
+  groups: number
+}
+
+type Entry<T extends object, K extends keyof T = keyof T> = {
+  key: K
+  value: T[K]
+}
+
+let array: Entry<ConfigSource>[] = [
+  { key: 'filter', value: BigInt(1) },
+  { key: 'sorts', value: 2 },
+  { key: 'groups', value: 3 }
+]
