@@ -1,5 +1,7 @@
 <!-- https://juejin.cn/post/6999280101556748295#heading-32 -->
 
+<!-- https://github.com/type-challenges/type-challenges/blob/main/questions/00013-warm-hello-world/README.zh-CN.md -->
+
 技巧总结
 
 ```TS
@@ -40,6 +42,9 @@ interface Chainable<Options = {}> {
 6.
 空对象的表示
 Record<PropertyKey, never>
+Record<unknown, never>
+Record<any, never>
+
 
 7.
 使用一个数组泛型辅助，使用数组长度计数
@@ -190,4 +195,10 @@ type Tpp2<A> = <S>() => S extends A ? 1 : 0
 type Test = Tpp1<1>
 // 推导泛型参数 正确的写法
 type Test = Tpp2<1>
+```
+
+23. 空对象的表示
+
+```js
+type EmptyObject = Record<PropertyKey, never>
 ```

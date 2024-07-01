@@ -5,21 +5,21 @@ const entry: NestDict = {
   a: {
     b: {
       c: {
-        dd: 'abcdd',
-      },
+        dd: 'abcdd'
+      }
     },
     d: {
-      xx: 'adxx',
+      xx: 'adxx'
     },
-    e: 'ae',
-  },
+    e: 'ae'
+  }
 }
 
 interface NestDict {
   [key: string]: NestDict | string
 }
 
-export {}
-
 // 类型别名“NestDict1”循环引用自身。ts(2456)
 // type NestDict1 = Record<string, NestDict1>
+
+export {}
