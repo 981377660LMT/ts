@@ -10,18 +10,18 @@ import { CamelCase } from 'type-fest'
 type Store<Keys extends readonly string[]> = {
   [K in Keys[number] as `${CamelCase<Lowercase<K>>}Visible`]: boolean
 } & {
-  [K in Keys[number] as `set${Capitalize<CamelCase<Lowercase<K>>>}`]: () => void
+  [K in Keys[number] as `toggle${Capitalize<CamelCase<Lowercase<K>>>}`]: () => void
 }
 
 const createStore = <Keys extends readonly string[]>(keys: Keys): Store<Keys> => {
   const store = {} as any
   keys.forEach(key => {
     const camelCaseKey = _.camelCase(key)
-    const camelCaseKeyVisible = `${camelCaseKey}Visible`
-    const setCamelCaseKey = `set${_.upperFirst(camelCaseKey)}`
-    store[camelCaseKeyVisible] = false
-    store[setCamelCaseKey] = () => {
-      store[camelCaseKeyVisible] = !store[camelCaseKeyVisible]
+    const visible = `${camelCaseKey}Visible`
+    const toggleVisible = `toggle${_.upperFirst(camelCaseKey)}`
+    store[visible] = false
+    store[toggleVisible] = () => {
+      store[visible] = !store[visible]
     }
   })
   return store
@@ -36,9 +36,7 @@ type Mapping<T> = {
 type Foo = Mapping<typeof store>
 const store = createStore(keys)
 console.log(store.fullFamilyNameVisible, store.userAvatarVisible, store.userNameVisible)
-store.setFullFamilyName()
+store.toggleFullFamilyName()
 console.log(store.fullFamilyNameVisible)
-store.setFullFamilyName()
+store.toggleFullFamilyName()
 console.log(store.fullFamilyNameVisible)
-store.setUserName()
-store.fullFamilyNameVisible
