@@ -5,7 +5,7 @@ interface Dict<T> {
   [key: string]: T
 }
 
-declare module 'lodash' {
+declare module 'my_lodash' {
   // export const camelCase = (input: string) => '123'
   export const camelCase: (input: string) => string
   // export function camelCase (input: string): string
