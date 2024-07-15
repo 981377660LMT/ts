@@ -9,13 +9,13 @@ interface Dict<T> {
   [key: string]: T
 }
 
-declare module 'lodash' {
+declare module 'my_lodash' {
   // 导出单个成员
   export const camelCase: (input: string) => string
 
   // 默认导出成员
   export default {
-    camelCase,
+    camelCase
   }
 
   // 相当于默认导出(历史原因)
