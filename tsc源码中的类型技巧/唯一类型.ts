@@ -72,3 +72,9 @@ type __String =
   | InternalSymbolName
 
 export {}
+
+// 也可以用symbol来实现
+declare const ShallowReactiveMarker: unique symbol
+export type ShallowReactive<T> = T & {
+  [ShallowReactiveMarker]?: true
+}

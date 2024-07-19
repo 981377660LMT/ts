@@ -10,6 +10,40 @@ export type Simplify<T> = { [K in keyof T]: T[K] }
 
 export type SetOptional<T extends object, K extends keyof T> = Simplify<Partial<Pick<T, K>> & Omit<T, K>>
 
-export type Primitive = string | number | boolean | bigint | symbol | undefined | null
-
 export type EnumValues<E extends Exclude<Primitive, symbol>> = `${E}`
+
+export type IfAny<T, Y, N> = 0 extends 1 & T ? Y : N
+
+export type Prettify<T> = {
+  [K in keyof T]: T[K]
+} & {}
+export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never
+export type LooseRequired<T> = {
+  [P in keyof (T & Required<T>)]: T[P]
+}
+
+type Primitive = string | number | boolean | bigint | symbol | undefined | null
+type Builtin = Primitive | Function | Date | Error | RegExp
+export type DeepReadonly<T> = T extends Builtin
+  ? T
+  : T extends Map<infer K, infer V>
+  ? ReadonlyMap<DeepReadonly<K>, DeepReadonly<V>>
+  : T extends ReadonlyMap<infer K, infer V>
+  ? ReadonlyMap<DeepReadonly<K>, DeepReadonly<V>>
+  : T extends WeakMap<infer K, infer V>
+  ? WeakMap<DeepReadonly<K>, DeepReadonly<V>>
+  : T extends Set<infer U>
+  ? ReadonlySet<DeepReadonly<U>>
+  : T extends ReadonlySet<infer U>
+  ? ReadonlySet<DeepReadonly<U>>
+  : T extends WeakSet<infer U>
+  ? WeakSet<DeepReadonly<U>>
+  : T extends Promise<infer U>
+  ? Promise<DeepReadonly<U>>
+  : T extends Ref<infer U>
+  ? Readonly<Ref<DeepReadonly<U>>>
+  : T extends {}
+  ? {
+      readonly [K in keyof T]: DeepReadonly<T[K]>
+    }
+  : Readonly<T>
