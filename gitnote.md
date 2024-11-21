@@ -23,7 +23,7 @@ or --ff-only on the command line to override the configured default per
 invocation.
 ```
 
-1. 是什么、为什么
+1. 是什么
    **其他人使用 branch 并 push 到公共分支，公共分支版本比我的新，导致我 commit 后想要 push 时出错(被打回)**
    ![push被rejected](image.png)
    这种报错比较少，因为 push 之前正常都会拉代码。
