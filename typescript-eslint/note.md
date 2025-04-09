@@ -1,0 +1,136 @@
+# typescript-eslint rules
+
+https://typescript-eslint.io/rules/
+
+- **adjacent-overload-signatures**：要求将同一方法的重载签名紧邻定义。
+- **array-type**：统一数组类型的书写风格（例如：T[] 或 Array<T>）。
+- **await-thenable**：禁止 await 非 Promise 对象。
+- **ban-ts-comment**：禁止使用能关闭类型检查的 ts-注释（如 @ts-ignore）。
+- **ban-tslint-comment**：禁止使用 tslint 的注释。
+- **class-literal-property-style**：要求类中静态属性的书写风格保持一致。
+- **class-methods-use-this**：要求不使用实例成员的类方法应声明为静态方法。
+- **consistent-generic-constructors**：要求构造函数中的泛型写法统一。
+  `constructor` or `type-annotation`
+- **consistent-indexed-object-style**：统一索引签名的书写方式。
+- **consistent-return**：要求函数始终显式返回值或不返回。
+- **consistent-type-assertions**：统一类型断言的写法（as 或 <>）。
+- **consistent-type-definitions**：统一使用 interface 或 type 定义对象类型。
+- **consistent-type-exports**：导出类型时使用统一的语法。
+- **consistent-type-imports**：导入类型时采用统一的书写风格。
+  `separate-types-imports` or `inline-type-imports`
+- **default-param-last**：要求默认参数放在参数列表的最后。
+- **dot-notation**：建议使用点符号访问对象属性。
+- **explicit-function-return-type**：要求所有函数都明确标注返回类型。
+- **explicit-member-accessibility**：要求类成员显示声明 public/private/protected。
+- **explicit-module-boundary-types**：要求模块导出函数、类等明确返回和参数类型。
+- **init-declarations**：要求声明变量时必须初始化。
+- **max-params**：限制函数参数的最大数量。
+- **member-ordering**：要求类中成员按照固定的顺序排列。
+- **method-signature-style**：要求接口或类型内方法签名风格统一。
+- **naming-convention**：强制采用一致的命名规则（如驼峰、帕斯卡等）。
+- **no-array-constructor**：禁止使用 Array 构造函数。
+- **no-array-delete**：禁止对数组使用 delete 操作符。
+- **no-base-to-string**：禁止调用 Object.prototype.toString 的默认实现。
+- **no-confusing-non-null-assertion**：禁止容易引起混淆的不必要非空断言。
+- **no-confusing-void-expression**：禁止将 void 表达式用于混淆场景。
+- **no-deprecated**：禁止使用已废弃的 API。
+- **no-dupe-class-members**：禁止在类中重复定义成员。
+- **no-duplicate-enum-values**：禁止枚举中重复的值。
+- **no-duplicate-type-constituents**：禁止联合或交叉类型中出现冗余构成。
+- **no-dynamic-delete**：禁止对对象进行动态删除操作。
+- **no-empty-function**：禁止空函数定义。
+- **no-empty-interface**：禁止定义无成员的接口。
+- **no-empty-object-type**：禁止空对象类型。
+- **no-explicit-any**：禁止显式声明 any 类型。
+- **no-extra-non-null-assertion**：禁止多余的非空断言操作符。
+- **no-extraneous-class**：禁止不必要的类声明。
+- **no-floating-promises**：要求处理所有 Promise，不允许忽略错误。
+- **no-for-in-array**：禁止对数组使用 for-in 循环。
+- **no-implied-eval**：禁止隐式使用 eval（例如传入 setTimeout 的字符串）。
+- **no-import-type-side-effects**：禁止仅导入类型时引入副作用。
+- **no-inferrable-types**：禁止显式标注那些编译器能自动推断的类型。
+- **no-invalid-this**：禁止在不合法的上下文中使用 this 关键字。
+- **no-invalid-void-type**：阻止在特定场景下使用 void 类型。
+- **no-loop-func**：禁止在循环体内定义函数，以免捕获错误的变量。
+- **no-loss-of-precision**：禁止可能导致数字精度丢失的表达式。
+- **no-magic-numbers**：禁止直接使用“魔法数字”，要求用具名常量代替。
+- **no-meaningless-void-operator**：禁止产生无意义结果的 void 操作运算。
+- **no-misused-new**：禁止错误地使用 new 操作符。
+- **no-misused-promises**：禁止将 Promise 用于非 Promise 预期的场景。
+- **no-misused-spread**：禁止错误地使用 ... 扩展操作符。
+- **no-mixed-enums**：禁止混合使用数字枚举和字符串枚举。
+- **no-namespace**：禁止使用自定义命名空间。
+- **no-non-null-asserted-nullish-coalescing**：禁止在空值合并操作中使用非空断言。
+- **no-non-null-asserted-optional-chain**：禁止在可选链后使用非空断言。
+- **no-non-null-assertion**：禁止使用非空断言操作符（!）。
+- **no-redeclare**：禁止变量或函数的重复声明。
+- **no-redundant-type-constituents**：禁止联合类型或交叉类型中出现多余的类型。
+- **no-require-imports**：禁止使用 require 导入模块。
+- **no-restricted-imports**：禁止从指定模块导入。
+- **no-restricted-types**：禁止使用某些不安全或不推荐的类型。
+- **no-shadow**：禁止变量在作用域中被重复声明（遮蔽外部变量）。
+- **no-this-alias**：禁止将 this 赋值给其他变量。
+- **no-type-alias**：禁止使用类型别名，鼓励使用接口定义。
+- **no-unnecessary-boolean-literal-compare**：禁止与布尔字面量进行不必要的比较。
+- **no-unnecessary-condition**：禁止总为真或假且不必要的条件判断。
+- **no-unnecessary-parameter-property-assignment**：禁止在构造函数中不必要的参数属性赋值。
+- **no-unnecessary-qualifier**：禁止使用冗余的命名空间限定符。
+- **no-unnecessary-template-expression**：禁止不必要的模板字符串表达式。
+- **no-unnecessary-type-arguments**：禁止传递多余的类型参数。
+- **no-unnecessary-type-assertion**：禁止不必要的类型断言。
+- **no-unnecessary-type-constraint**：禁止泛型中多余的类型约束。
+- **no-unnecessary-type-parameters**：禁止多余的泛型参数。
+- **no-unsafe-argument**：禁止传入不安全类型的参数。
+- **no-unsafe-assignment**：禁止不安全的赋值操作。
+- **no-unsafe-call**：禁止对类型不明确的函数进行调用。
+- **no-unsafe-declaration-merging**：禁止声明合并时产生的不安全情况。
+- **no-unsafe-enum-comparison**：禁止枚举之间不安全的比较。
+- **no-unsafe-function-type**：禁止定义不安全的函数类型。
+- **no-unsafe-member-access**：禁止访问可能为 undefined 的成员。
+- **no-unsafe-return**：禁止返回不安全的值。
+- **no-unsafe-type-assertion**：禁止使用不安全的类型断言。
+- **no-unsafe-unary-minus**：禁止使用一元减操作符产生不安全行为。
+- **no-unused-expressions**：禁止出现未使用的表达式。
+- **no-unused-vars**：禁止声明后未使用的变量。
+- **no-use-before-define**：禁止在定义之前使用变量或函数。
+- **no-useless-constructor**：禁止不必要的空构造函数。
+- **no-useless-empty-export**：禁止包含无意义的空导出声明。
+- **no-var-requires**：禁止使用非 ECMAScript 模块导入方式（require）。
+- **no-wrapper-object-types**：禁止使用包装对象（如 new String）。
+- **non-nullable-type-assertion-style**：统一非空断言的写法。
+- **only-throw-error**：禁止 throw 非 Error 对象。
+- **parameter-properties**：鼓励在构造函数中直接声明和初始化属性。
+- **prefer-as-const**：推荐使用 as const 断言来明确字面量类型。
+- **prefer-destructuring**：鼓励使用解构赋值替代传统属性访问。
+- **prefer-enum-initializers**：要求枚举成员显式初始化。
+- **prefer-find**：建议使用 Array.find 替代其他查找方式。
+- **prefer-for-of**：鼓励用 for...of 替代传统 for 循环遍历数组。
+- **prefer-function-type**：建议使用函数类型表达可调用结构。
+- **prefer-includes**：建议使用 Array.includes() 判断包含关系。
+- **prefer-literal-enum-member**：要求枚举成员使用字面量进行初始化。
+- **prefer-namespace-keyword**：在声明内部模块时使用 namespace 关键字。
+- **prefer-nullish-coalescing**：建议使用 ?? 操作符代替 || 进行空值判断。
+- **prefer-optional-chain**：建议使用可选链运算符简化深层属性访问。
+- **prefer-promise-reject-errors**：要求 Promise.reject 的参数必须是 Error 对象。
+- **prefer-readonly**：建议对永不重新赋值的变量使用 readonly 修饰。
+- **prefer-readonly-parameter-types**：参数类型尽可能使用 readonly 防止误改。
+- **prefer-reduce-type-parameter**：要求在 Array.reduce 中显式指定类型参数。
+- **prefer-regexp-exec**：建议使用 RegExp.prototype.exec() 来替代 String.match()。
+- **prefer-return-this-type**：建议函数返回 this 以便链式调用。
+- **prefer-string-starts-ends-with**：建议使用 startsWith()/endsWith() 判断字符串。
+- **prefer-ts-expect-error**：建议使用 @ts-expect-error 替代 @ts-ignore。
+- **promise-function-async**：要求返回 Promise 的函数必须声明为 async。
+- **related-getter-setter-pairs**：要求成对定义 getter 和 setter 方法。
+- **require-array-sort-compare**：要求在 array.sort() 时必须提供比较函数。
+- **require-await**：禁止 async 函数中没有 await 的情况。
+- **restrict-plus-operands**：限制加法操作数类型，防止拼接错误。
+- **restrict-template-expressions**：限制模板表达式中只能使用安全类型。
+- **return-await**：在 async 函数中要求一致性地使用 return await。
+- **sort-type-constituents**：要求联合或交叉类型中的类型按字母顺序排列。
+- **strict-boolean-expressions**：要求条件表达式必须明确返回布尔值。
+- **switch-exhaustiveness-check**：要求 switch 语句涵盖所有可能的情况。
+- **triple-slash-reference**：限制使用三斜杠指令，仅在必要时使用。
+- **typedef**：要求在变量、参数等处明确标注类型。
+- **unbound-method**：禁止直接使用未绑定 this 的方法。
+- **unified-signatures**：要求将具有相似参数的重载签名合并。
+- **use-unknown-in-catch-callback-variable**：捕获异常时推荐使用 unknown 类型而非 any。
