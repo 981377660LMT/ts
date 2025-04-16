@@ -47,3 +47,7 @@ export type DeepReadonly<T> = T extends Builtin
       readonly [K in keyof T]: DeepReadonly<T[K]>
     }
   : Readonly<T>
+
+export type ReplaceProp<T, K extends keyof T, V> = {
+  [P in keyof T]: P extends K ? V : T[P]
+}
